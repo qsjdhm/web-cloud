@@ -1,11 +1,11 @@
-# `gpnote`
+# `@qwe/wc-input2`
 
 > TODO: description
 
 ## Usage
 
 ```
-const gpnote = require('gpnote');
+const wcInput2 = require('@qwe/wc-input2');
 
 // TODO: DEMONSTRATE API
 ```

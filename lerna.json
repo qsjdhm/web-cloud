@@ -1,9 +1,6 @@
 {
   "packages": [
-    "packages/*",
-    "packages/@gp0320/*"
+    "packages/*"
   ],
-  "useWorkspaces": true,
-  "npmClient": "yarn",
   "version": "0.0.0"
 }
