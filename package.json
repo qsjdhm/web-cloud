@@ -4,7 +4,16 @@
   "workspaces": [
     "components/*"
   ],
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
   "devDependencies": {
-    "lerna": "^3.16.4"
+    "lerna": "^3.16.4",
+    "vuepress": "^0.14.9",
+    "webpack-dev-middleware": "^3.7.2"
+  },
+  "dependencies": {
+    "axios": "^0.19.2"
   }
 }
