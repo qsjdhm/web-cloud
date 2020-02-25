@@ -1,6 +1,6 @@
 {
   "name": "@webcl/webcl-search",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "> TODO: description",
   "author": "DESKTOP-TR0K2SP\\admin <zhangyan1@vtstar.net>",
   "homepage": "https://github.com/qsjdhm/web-cloud#readme",
@@ -27,8 +27,8 @@
     "url": "https://github.com/qsjdhm/web-cloud/issues"
   },
   "dependencies": {
-    "@webcl/webcl-input": "^0.0.1",
-    "@webcl/webcl-select": "^0.0.1",
+    "@webcl/webcl-input": "^1.0.0",
+    "@webcl/webcl-select": "^1.0.0",
     "axios": "^0.19.2"
   }
 }
