@@ -6,6 +6,6 @@
 
 ```
 const webclSelect = require('@webcl/webcl-select');
-1
+12
 // TODO: DEMONSTRATE API
 ```
