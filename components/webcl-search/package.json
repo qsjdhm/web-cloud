@@ -1,11 +1,11 @@
 {
-  "name": "@webcl/webcl-input",
+  "name": "@webcl/webcl-search",
   "version": "0.0.1",
   "description": "> TODO: description",
   "author": "DESKTOP-TR0K2SP\\admin <zhangyan1@vtstar.net>",
   "homepage": "https://github.com/qsjdhm/web-cloud#readme",
   "license": "ISC",
-  "main": "lib/webcl-input.js",
+  "main": "lib/webcl-search.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -27,6 +27,8 @@
     "url": "https://github.com/qsjdhm/web-cloud/issues"
   },
   "dependencies": {
-    "element-ui": "^2.13.0"
+    "@webcl/webcl-input": "^0.0.1",
+    "@webcl/webcl-select": "^0.0.1",
+    "axios": "^0.19.2"
   }
 }
