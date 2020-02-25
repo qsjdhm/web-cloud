@@ -1,11 +1,11 @@
 {
-  "name": "@wc/wc-select",
+  "name": "@wc/wc-input",
   "version": "1.0.4",
   "description": "> TODO: description",
   "author": "DESKTOP-TR0K2SP\\admin <zhangyan1@vtstar.net>",
   "homepage": "https://github.com/qsjdhm/web-cloud#readme",
   "license": "ISC",
-  "main": "lib/wc-select.js",
+  "main": "lib/wc-input.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -14,7 +14,7 @@
     "lib"
   ],
   "publishConfig": {
-    "registry": "https://registry.npm.taobao.org/"
+    "access": "public"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,5 @@
   },
   "bugs": {
     "url": "https://github.com/qsjdhm/web-cloud/issues"
-  },
-  "gitHead": "ac68b9800ac6792978f0462a876cb11d9f732d8f"
+  }
 }
