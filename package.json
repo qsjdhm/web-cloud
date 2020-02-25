@@ -1,9 +1,6 @@
 {
   "name": "@wc/root",
   "private": true,
-  "workspaces": [
-    "components/*"
-  ],
   "devDependencies": {
     "lerna": "^3.16.4"
   }

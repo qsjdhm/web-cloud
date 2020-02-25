@@ -5,7 +5,7 @@
 ## Usage
 
 ```
-const wcInput = require('@wc/wc-input');23333
+const wcInput = require('@wc/wc-input');
 
 // TODO: DEMONSTRATE API
 ```
