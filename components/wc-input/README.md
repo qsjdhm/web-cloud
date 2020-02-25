@@ -8,4 +8,4 @@
 const wcInput = require('@wc/wc-input');
 
 // TODO: DEMONSTRATE API
-```
+```22
