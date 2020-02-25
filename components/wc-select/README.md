@@ -1,8 +1,8 @@
 # `@wc/wc-select`
 
-> TODO: description1
+> TODO: description
 
-## Usage
+## Usage22
 
 ```
 const wcSelect = require('@wc/wc-select');
