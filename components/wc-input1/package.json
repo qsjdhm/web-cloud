@@ -1,5 +1,5 @@
 {
-  "name": "@wc/wc-input1",
+  "name": "wc-input1",
   "version": "1.0.14",
   "description": "> TODO: description",
   "author": "DESKTOP-TR0K2SP\\admin <zhangyan1@vtstar.net>",
@@ -26,5 +26,5 @@
   "bugs": {
     "url": "https://github.com/qsjdhm/web-cloud/issues"
   },
-  "gitHead": "e0ce56ef0bd75a05d97c49d315db95d74fa70911"
+  "gitHead": "730a27a0481ad33ce42c64ccbe78dcbd0659836b"
 }
