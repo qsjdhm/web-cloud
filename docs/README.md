@@ -2,33 +2,20 @@
 home: true
 heroImage: /home.png
 title: a
-actionText: Get Started →
+actionText: 快速上手 →
 actionLink: /guide/
 features:
-  - title: Feature-rich
-    details: Typical templates for enterprise applications and various components
-  - title: Best Practice
-    details: Reasonable framework choice, good engineering practice
-  - title: Up-to-date Dev Stack
-    details: Development using front-end advanced technology
-  - title: Permission Validation
-    details: Dynamic loading of route and rendering sidebar based on permissions
-  - title: Globalization
-    details: Built-in industry universal international solution
-  - title: Theming
-    details: Supports multiple dynamic skin methods
+  - title: 丰富功能
+    details: 提炼了典型的业务模型，提供了丰富的功能组件
+  - title: 最佳实践
+    details: 合理的框架选择，良好的工程实践助你持续产出高质量代码
+  - title: 最新技术栈
+    details: 使用 vue/vuex/vue-router/element 等前端前沿技术开发
+  - title: 权限验证
+    details: 根据权限动态加载路由，渲染侧边栏
+  - title: 国际化
+    details: 内建业界通用的国际化方案
+  - title: 主题
+    details: 支持多种动态换肤功能
 footer: MIT Licensed | Copyright © 2017-present PanJiaChen
 ---
-
-## Getting Started
-
-```bash
-# clone the project
-git clone https://github.com/PanJiaChen/vue-element-admin.git
-
-# install dependency
-npm install
-
-# develop
-npm run dev
-```

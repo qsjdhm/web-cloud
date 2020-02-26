@@ -1,6 +1,6 @@
-# Release Notes
+# 更新记录
 
-[Release Notes](https://github.com/PanJiaChen/vue-element-admin/releases)
+[在线查看更新记录](https://github.com/PanJiaChen/vue-element-admin/releases)
 
 <script>
 export default {

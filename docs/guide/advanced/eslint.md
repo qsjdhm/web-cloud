@@ -1,47 +1,46 @@
 # ESLint
 
-Whether it's a multi-person collaboration or personal projects, code specifications are important. It can not only avoids basic syntax errors, but also ensures the readability of the code.
+不管是多人合作还是个人项目，代码规范都是很重要的。这样做不仅可以很大程度地避免基本语法错误，也保证了代码的可读性。
 
-## Config
+## 配置项
 
-All configuration files are in [.eslintrc.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/.eslintrc.js).
-The basic eslint rules of this project is based on the official eslint rules of vue [eslint-config-vue](https://github.com/vuejs/eslint-config-vue) but made minor changes. You can customize your configuration according to your needs.
+所有的配置文件都在 [.eslintrc.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/.eslintrc.js) 中。
+本项目基本规范是依托于 vue 官方的 eslint 规则 [eslint-config-vue](https://github.com/vuejs/eslint-config-vue) 做了少许的修改。大家可以按照自己的需求进行定制化配置。
 
-Such as: my personal or project team is accustomed to using two spaces, but you may feel that the four spaces are more pleasing, and you can make the following changes.
+比如：我个人或者项目组习惯于使用两个空格，但你可能觉得四个空格更顺眼，你可以做如下修改。
+进入项目 `.eslintrc.js` 中，找到 `indent`，然后修改为 `4` 即可。 还有各种各样的配置信息，详情见 [ESLint 文档](https://eslint.org/docs/rules/)。
 
-Enter the project of `.eslintrc.js`, find `indent`,and then set it to `4` 。There are a variety of configuration information, see details [ESLint Document](https://eslint.org/docs/rules/)。
+在 [v3.8.1](https://github.com/PanJiaChen/vue-element-admin/releases/tag/v3.8.1)版本之后，增加了[eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-vue)来更好的校验 vue 相关代码。
 
-After [v3.8.1](https://github.com/PanJiaChen/vue-element-admin/releases/tag/v3.8.1), [eslint-plugin-vue](https://github.Com/vuejs/eslint-plugin-vue) has been added to better verify vue related code.
-
-By default, the most restrictive config `plugin:vue/recommended` is used to verify the code. If you think it is too strict, you can modify it yourself.
+默认情况下使用了最严格的`plugin:vue/recommended`来校验代码，若你觉得太严格可自行修改。
 
 ```js
 // https://github.com/PanJiaChen/vue-element-admin/blob/master/.eslintrc.js
 
 module.exports = {
   extends: ['plugin:vue/recommended', 'eslint:recommended']
-  //You can change it to  extends: ['plugin:vue/essential', 'eslint:recommended']
+  //你可以修改为  extends: ['plugin:vue/essential', 'eslint:recommended']
 }
 ```
 
-## Cancel ESLint
+## 取消 ESLint 校验
 
-If you don't want to use ESLint (not recommended for cancellation), just find the [vue.config.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/vue.config.js) file.
-Make the following settings `lintOnSave: false`.
+如果你不想使用 ESLint 校验（不推荐取消），只要找到 [vue.config.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/vue.config.js) 文件。
+进行如下设置 `lintOnSave: false` 即可。
 
-## Configure ESLint in vscode
+## vscode 配置 ESLint
 
-Sharp tools make good work! Personally recommend eslint+vscode to write VUE, there is definitely a very cool
+这所谓工欲善其事，必先利其器，个人推荐 eslint+vscode 来写 vue，绝对有种飞一般的感觉。效果如图：
 ![eslintGif.gif](https://wpimg.wallstcn.com/e94a76df-6dc0-4c15-9785-28b553a163e9.png)
 
 <br/>
 
-Every time you save your code, vscode will be able to mark red areas that do not conform to the eslint rules, and make some simple self-fixes at the same time. The installation steps are as follows:
+每次保存，vscode 就能标红不符合 eslint 规则的地方，同时还会做一些简单的自我修正。安装步骤如下：
 
-First install the eslint plugin
+首先安装 eslint 插件
 ![eslint1.png](https://wpimg.wallstcn.com/72f126cb-09eb-4b27-b02e-65e79eb76220.png)
 
-After we have installed ESLint, we back to VSCode to set up . Go to `Code` > `Preferences` > `Settings` and add the following configuration.
+安装并配置完成 ESLint 后，我们继续回到 VSCode 进行扩展设置，依次点击 文件 > 首选项 > 设置 打开 VSCode 配置文件,添加如下配置
 
 ```json
 {
@@ -60,18 +59,18 @@ After we have installed ESLint, we back to VSCode to set up . Go to `Code` > `Pr
 }
 ```
 
-Everyone and the team have their own code specification, unification is good, to create their own eslint rules and upload it to the npm will be fun. Such as ElemeFE [config](https://www.npmjs.com/package/eslint-config-elemefe) or Vue official [config](https://github.com/vuejs/eslint-config-vue).
+这样每次保存的时候就可以根据根目录下.eslintrc.js 你配置的 eslint 规则来检查和做一些简单的 fix。每个人和团队都有自己的代码规范，统一就好了，去打造一份属于自己的 eslint 规则上传到 npm 吧，如饿了么团队的 [config](https://www.npmjs.com/package/eslint-config-elemefe)，vue 的 [config](https://github.com/vuejs/eslint-config-vue)。
 
-[vscode plugin and configuration recommendations](https://github.com/varHarrie/Dawn-Blossoms/issues/10)
+[vscode 插件和配置推荐](https://github.com/varHarrie/Dawn-Blossoms/issues/10)
 
-## More configuration
+## 更多配置
 
-Since this project is built based on `vue-cli`, more configuration can be found in the official [documentation](https://cli.vuejs.org/en/config/#lintonsave)
+由于本项目是基于`vue-cli`进行构建，所以更多配置可参考官方[文档](https://cli.vuejs.org/zh/config/#lintonsave)
 
-## Auto fix
+## 自动修复
 
 ```bash
 npm run lint -- --fix
 ```
 
-Running the above command, eslint will automatically fix some simple errors.
+运行如上命令，eslint 会自动修复一些简单的错误。

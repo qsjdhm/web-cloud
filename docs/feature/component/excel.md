@@ -1,104 +1,104 @@
 # Excel
 
-## Excel Export
+## Excel 导出
 
-Import and export of Excel is implemented by relying on [js-xlsx](https://github.com/SheetJS/js-xlsx).
+Excel 的导入导出都是依赖于[js-xlsx](https://github.com/SheetJS/js-xlsx)来实现的。
 
-[Export2Excel.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/vendor/Export2Excel.js) is packaged on the on `js-xlsx` to facilitate exporting data.
+在 `js-xlsx`的基础上又封装了[Export2Excel.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/vendor/Export2Excel.js)来方便导出数据。
 
-### Use
+### 使用
 
-Since `Export2Excel` depends not only on `js-xlsx` but also on `file-saver` and `script-loader`.
+由于 `Export2Excel`不仅依赖`js-xlsx`还依赖`file-saver`和`script-loader`。
 
-So you first need to install the following command:
+所以你先需要安装如下命令：
 
 ```bash
 npm install xlsx file-saver -S
 npm install script-loader -S -D
 ```
 
-Since `js-xlsx` size is still very large, the export function is not a very common function, so lazy loading is recommended when using it. The method of use is as follows:
+由于`js-xlsx`体积还是很大的，导出功能也不是一个非常常用的功能，所以使用的时候建议使用懒加载。使用方法如下：
 
 ```js
 import('@/vendor/Export2Excel').then(excel => {
   excel.export_json_to_excel({
-    header: tHeader, //Header Required
-    data, //Specific data Required
-    filename: 'excel-list', //Optional
-    autoWidth: true, //Optional
-    bookType: 'xlsx' //Optional
+    header: tHeader, //表头 必填
+    data, //具体数据 必填
+    filename: 'excel-list', //非必填
+    autoWidth: true, //非必填
+    bookType: 'xlsx' //非必填
   })
 })
 ```
 
-:::warning Warning <Badge text="v3.9.1+"/>
-The compatibility code for Bolb has been removed in the later versions of `v3.9.1+`. If you need to be compatible with very low-level browsers, you can manually introduce [blob-polyfill](https://www.npmjs.com/package/blob-polyfill) .
+:::warning 注意 <Badge text="v3.9.1+"/>
+在`v3.9.1+`以后的版本中移除了对 Bolb 的兼容性代码，如果你还需要兼容很低版本的浏览器可以手动引入[blob-polyfill](https://www.npmjs.com/package/blob-polyfill)进行兼容。
 :::
 
-### Params
+### 参数
 
-| Params    | Description                 | Type    | Accepted Values                                                                     | Default    |
-| --------- | --------------------------- | ------- | ----------------------------------------------------------------------------------- | ---------- |
-| header    | Export header of data       | Array   | /                                                                                   | []         |
-| data      | Exported specific data      | Array   | /                                                                                   | []         |
-| filename  | Export file name            | String  | /                                                                                   | excel-list |
-| autoWidth | Whether the cell auto width | Boolean | true / false                                                                        | true       |
-| bookType  | Export file type            | String  | xlsx, csv, txt, [more](https://github.com/SheetJS/js-xlsx#supported-output-formats) | xlsx       |
+| 参数      | 说明                   | 类型    | 可选值                                                                              | 默认值     |
+| --------- | ---------------------- | ------- | ----------------------------------------------------------------------------------- | ---------- |
+| header    | 导出数据的表头         | Array   | /                                                                                   | []         |
+| data      | 导出的具体数据         | Array   | /                                                                                   | []]        |
+| filename  | 导出文件名             | String  | /                                                                                   | excel-list |
+| autoWidth | 单元格是否要自适应宽度 | Boolean | true / false                                                                        | true       |
+| bookType  | 导出文件类型           | String  | xlsx, csv, txt, [more](https://github.com/SheetJS/js-xlsx#supported-output-formats) | xlsx       |
 
-### Example
+### 示例
 
 ```js
 import('@/vendor/Export2Excel').then(excel => {
   const tHeader = ['Id', 'Title', 'Author', 'Readings', 'Date']
   const data = this.list
   excel.export_json_to_excel({
-    header: tHeader, //Header Required
-    data, //Specific data Required
-    filename: 'excel-list', //Optional
-    autoWidth: true, //Optional
-    bookType: 'xlsx' //Optional
+    header: tHeader, //表头 必填
+    data, //具体数据 必填
+    filename: 'excel-list', //非必填
+    autoWidth: true, //非必填
+    bookType: 'xlsx' //非必填
   })
 })
 ```
 
-- [Online Demo](https://panjiachen.github.io/vue-element-admin/#/excel/export-excel)
-- [Online Code](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/views/excel/exportExcel.vue)
+- [在线 DEMO](https://panjiachen.github.io/vue-element-admin/#/excel/export-excel)
+- [在线 代码](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/views/excel/exportExcel.vue)
 
-## Excel Import
+## Excel 导入
 
-Encapsulated [UploadExcel](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/components/UploadExcel/index.vue) Excel import component, support click and drag upload, also it is also Depends on `js-xlsx`.
+封装了[UploadExcel](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/components/UploadExcel/index.vue)Excel 导入组件，支持点击和拖拽上传，同样它也是依赖`js-xlsx`的。
 
-It provides two callback functions:
+它提供了两个回调函数：
 
 - beforeUpload
 
-  You can make some special judgments before uploading. For example, if the size of the file is greater than 1 megabyte? If it is greater than 1 megabyte, it stops parsing and prompts an error message.
+  你可以在上传之前做一些自己的特殊判断，如判断文件的大小是否大于 1 兆？若大于 1 兆则停止解析并提示错误信息。
 
-```js
+  ```js
   beforeUpload(file) {
-    const isLt1M = file.size / 1024 / 1024 < 1
+      const isLt1M = file.size / 1024 / 1024 < 1
 
-    if (isLt1M) {
-      return true
+      if (isLt1M) {
+        return true
+      }
+
+      this.$message({
+        message: 'Please do not upload files larger than 1m in size.',
+        type: 'warning'
+      })
+      return false
     }
-
-    this.$message({
-      message: 'Please do not upload files larger than 1m in size.',
-      type: 'warning'
-    })
-    return false
-  }
-```
+  ```
 
 - onSuccess
-  A callback function that fires when parsing succeeds, which returns the header and content of the table.
+  解析成功时候会触发的回调函数，它会返回表格的表头和内容。
 
 ```js
-  handleSuccess({ results, header }) {
-    this.tableData = results
-    this.tableHeader = header
-  }
+ handleSuccess({ results, header }) {
+      this.tableData = results
+      this.tableHeader = header
+    }
 ```
 
-- [Online Demo](https://panjiachen.github.io/vue-element-admin/#/excel/upload-excel)
-- [Online Code](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/views/excel/upload-excel.vuee)
+- [在线 DEMO](https://panjiachen.github.io/vue-element-admin/#/excel/upload-excel)
+- [在线 代码](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/views/excel/upload-excel.vue)

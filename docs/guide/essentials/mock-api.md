@@ -1,47 +1,43 @@
 # Mock Data
 
-Mock data is an integral part of the front-end development, the key link to separate the front and back-end development. By pre-agreed with the server-side interface, analog request data and even logic, can make the front-end development independent, will not be blocked by the development of the server.
+Mock 数据是前端开发过程中必不可少的一环，是分离前后端开发的关键链路。通过预先跟服务器端约定好的接口，模拟请求数据甚至逻辑，能够让前端开发更加独立自主，不会被服务端的开发所阻塞。
 
 ## Swagger
 
-In my company project, the data is usually simulated by the backend using [swagger](https://swagger.io/).
+在公司的项目中通常使用 [swagger](https://swagger.io/)， 由后端来模拟业务数据。
+**swagger** 是一个 REST APIs 文档生成工具，它从代码注释中自动生成文档，可以跨平台，开源，支持大部分语言，社区好，总之非常不错，强烈推荐。
+[线上 demo](http://petstore.swagger.io/?_ga=2.222649619.983598878.1509960455-2044209180.1509960455#/pet/addPet)
 
-**swagger** is a REST APIs document generation tool that automatically generates documentation from code comments. It can be cross-platform, open source, supports most languages, community is good, in short, very good, highly recommended.
+## Easy-Mock
 
-[Online Demo](http://petstore.swagger.io/?_ga=2.222649619.983598878.1509960455-2044209180.1509960455#/pet/addPet)
-
-## Easy-mock
-
-[vue-admin-template](https://github.com/PanJiaChen/vue-admin-template) previously used [easy-mock](https://easy-mock.com/login) to simulate data.
-It is a pure front-end visualization and can quickly generate persistence services for analog data. Very easy to use and can also be combined with `swagger`, support for cross-domain, whether it is a team or a personal project is worth a try.
-
-[Online Demo](https://easy-mock.com/)
+[vue-admin-template](https://github.com/PanJiaChen/vue-admin-template) 之前使用的是 [easy-mock](https://easy-mock.com/login) 来模拟数据。
+它是一个纯前端可视化，并且能快速生成模拟数据的持久化服务。非常的简单易用还能结合 `swagger`，天然支持跨域 ，不管团队还是个人项目都值得一试。
 
 ::: warning
-The online version of `vue-admin-template` is no longer using `easy-mock`. Because the online free service provided by `easy-mock` is very unstable, it will hang from time to time. If you need it, you can build your own service according to its tutorial.
+现在线上版本的`vue-admin-template` 已经不使用`easy-mock`。因为`easy-mock`提供的线上免费服务很不稳定，时不时的就会挂掉，如果有需要的可以自己按照它的教程，搭建自己的服务。
 :::
 
 ## Mockjs
 
-Since [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin) is a pure front-end personal project, all data is [mockjs] (https://github.com/ Nuysoft/Mock) Simulation generation. Its principle is: Intercept all requests and proxy to the local, and then mock data, so you will find that no requests are issued in `network`.
+由于 [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin) 是一个纯前端个人项目，所有的数据都是用 [mockjs](https://github.com/nuysoft/Mock) 模拟生成。它的原理是: 拦截了所有的请求并代理到本地，然后进行数据模拟，所以你会发现 `network` 中没有发出任何的请求。
 
-But its biggest problem is its implementation mechanism. It overrides the browser's `XMLHttpRequest` object to intercept all requests and proxy to the local. In most cases it is quite convenient to use, but because it rewrites the `XMLHttpRequest` object, so for example, the `progress` method, or some third-party libraries that rely on `XMLHttpRequest` will be incompatible with it. Looking at my project's [issues](https://github.com/PanJiaChen/vue-element-admin/issues?utf8=%E2%9C%93&q=mock), you will know how many people have problems.
+但它的最大的问题是就是它的实现机制。它会重写浏览器的`XMLHttpRequest`对象，从而才能拦截所有请求，代理到本地。大部分情况下用起来还是蛮方便的，但就因为它重写了`XMLHttpRequest`对象，所以比如`progress`方法，或者一些底层依赖`XMLHttpRequest`的库都会和它发生不兼容，可以看一下我项目的[issues](https://github.com/PanJiaChen/vue-element-admin/issues?utf8=%E2%9C%93&q=mock)，就知道多少人被坑了。
 
-It also has a problem because it is data that is simulated locally and does not actually take any network requests. Therefore, local debugging is very troublesome and can only be debugged by `console.log`. Take the example of `vue-element-admin`. If you want to find out what data is returned by the `getInfo()` api, you can only know it by looking at the source code or manually `Debug`.
+它还有一个问题是，因为是它本地模拟的数据，实际上不会走任何网络请求。所以本地调试起来很蛋疼，只能通过`console.log`来调试。就拿`vue-element-admin`来说，想搞清楚 `getInfo()`接口返回了什么数据，只能通过看源码或者手动 `Debug` 才能知道。
 
-## New way <Badge text="v4.0.0+"/>
+## 新方案 <Badge text="v4.0.0+"/>
 
-After the `v4.0` version, a `mock-server` will be launched locally to simulate the data, and the online environment will continue to use `mockjs` for simulation.(Because this project is a pure front-end project, you can also build an online server to provide data.)
+在`v4.0`版本之后，在本地会启动一个`mock-server`来模拟数据，线上环境还是继续使用`mockjs`来进行模拟(因为本项目是一个纯前端项目，你也可以自己搭建一个线上 server 来提供数据)。不管是本地还是线上所有的数据模拟都是基于`mockjs`生成的，所以只要写一套 mock 数据，就可以在多环境中使用。
 
-The advantage of this way is to solve the previous pain points while preserving the advantages of `mockjs`. Since our mock is implemented entirely based on `webpack-dev-serve`, `mock-server` will start automatically when you start the project, and it will also pass [chokidar](https://github.com/paulmillr/chokidar) to observe the changes in the contents of the `mock` folder. When a change occurs, the previously registered `mock-api` interface is cleared and the new interface is dynamically remounted to support hot updates. If you are interested, you can look at the code [mock-server.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/mock/mock-server.js). Since it is a real `server`, you can clearly know the data structure returned by the interface through `network` of Chrome. At the same time, it solves the problem that the previous `mockjs` will rewrite the `XMLHttpRequest` object, which causes many third-party libraries to fail.
+该方案的好处是，在保留 `mockjs`的优势的同时，解决之前的痛点。由于我们的 mock 是完全基于`webpack-dev-serve`来实现的，所以在你启动前端服务的同时，`mock-server`就会自动启动，而且这里还通过 [chokidar](https://github.com/paulmillr/chokidar) 来观察 `mock` 文件夹内容的变化。在发生变化时会清除之前注册的`mock-api`接口，重新动态挂载新的接口，从而支持热更新。有兴趣的可以自己看一下代码[mock-server.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/mock/mock-server.js)。由于是一个真正的`server`，所以你可以通过控制台中的`network`，清楚的知道接口返回的数据结构。并且同时解决了之前`mockjs`会重写 `XMLHttpRequest`对象，导致很多第三方库失效的问题。
 
-All requests for this project are sent via the packaged [request.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/utils/request.js) by reading The source code can find that all requests are set to a `baseURL`, and this `baseURL` is dynamically set by reading the `process.env.VUE_APP_BASE_API` environment variable, so that we can use different environments for different environments. Api` address
+本项目的所有请求都是通过封装的[request.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/utils/request.js)进行发送的，通过阅读源码可以发现所有的请求都设置了一个`baseURL`，而这个`baseURL`又是通过读取`process.env.VUE_APP_BASE_API`这个环境变量来动态设置的，这样方便我们做到不同环境使用不同的 `api` 地址。
 
-## Remove
+## 移除
 
-If you don't want to use `mock-server`, just the `after` Middleware of `webpack-dev-server` from [vue.config.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/vue.config.js).
+如果你不想使用`mock-server`的话只要在[vue.config.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/vue.config.js)中移除`webpack-dev-server`中`proxy`和`after`这个`Middleware`就可以了。
 
-By default, local requests are proxy to `http://localhost:${port}/mock`, and you can modify `proxy` if you want to adjust to your own mock address.
+现在默认情况下本地的请求会代理到`http://localhost:${port}/mock`下，如果你想调整为自己的 mock 地址可以修改 `proxy`
 
 ```js
 proxy: {
@@ -58,13 +54,24 @@ proxy: {
 after: require('./mock/mock-server.js')
 ```
 
-**Please note: this operation requires a restart of the server.**
+:::tip
+**请注意：该操作需要重启服务**
+:::
 
-## Add
+`mock-server`只会在开发环境中使用，线上生产环境目前使用`MockJs`进行模拟。如果不需要请移除。具体代码：[main.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/main.js)
 
-If you want to add mock data, just find the `mock` file in the root folder, add the corresponding route, intercept it and simulate the data.
+```js
+import { mockXHR } from '../mock'
+if (process.env.NODE_ENV === 'production') {
+  mockXHR()
+}
+```
 
-For example, I need to add an api to get the number of comments below an article in [src/api/article](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/api/article.js) through `fetchComments`. First create a new api:
+## 新增
+
+如果你想添加 mock 数据，只要在根目录下找到`mock`文件，添加对应的路由，对其进行拦截和模拟数据即可。
+
+比如我现在在[src/api/article](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/api/article.js)中需要添加一个查询某篇文章下面评论数的接口`fetchComments`，首先新建接口：
 
 ```js
 export function fetchComments(id) {
@@ -75,20 +82,20 @@ export function fetchComments(id) {
 }
 ```
 
-After declaring the api, we need to find the corresponding mock folder [mock/article.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/mock/article.js), below Create a mock api that intercepts routes.
+声明完接口之后，我们需要找到对应的 mock 文件夹[mock/article.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/mock/article.js)，在下面创建一个能拦截路由的 mock 接口
 
-**Please note that the mock interception is based on routing. Please make sure that the mock data path will match your api route path(support regular)**
+**请注意，mock 拦截是基于路由来做的，请确 mock 数据一定能匹配你的 api 保路由，支持正则**
 
 ```js
 // fetchComments 的 mock
 {
-  // uUrl must match your api route
-  // For example, the route of fetchComments may be /article/1/comments or /article/2/comments
-  // So you need to match by regular
+  // url 必须能匹配你的接口路由
+  // 比如 fetchComments 对应的路由可能是 /article/1/comments 或者 /article/2/comments
+  // 所以你需要通过正则来进行匹配
   url: '/article/[A-Za-z0-9]/comments',
-  type: 'get', // Must be the same type as your interface defines
+  type: 'get', // 必须和你接口定义的类型一样
   response: (req, res) => {
-    // return result
+    // 返回的结果
     // req and res detail see
     // https://expressjs.com/zh-cn/api.html#req
     return {
@@ -101,14 +108,14 @@ After declaring the api, we need to find the corresponding mock folder [mock/art
 }
 ```
 
-## Change
+## 修改
 
-The most common operation is: You have simulated some data locally, and after the backend completes the api, it gradually replaces the api of the original mock.
+最常见的操作就是：你本地模拟了了一些数据，待后端完成接口后，逐步替换掉原先 mock 的接口。
 
-Let's take the `getRoles` api in [src/api/role.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/api/role.js) as an example. It was originally mocked in [mock/role/index.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/mock/role/index.js). Now we need to switch it to real backend data, as long as it is in [mock/role/index.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/mock/role/index.js) Find the corresponding route, then delete it. At this time you can view the real data in `network`.
+我们以[src/api/role.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/api/role.js)中的`getRoles`接口为例。它原本是在[mock/role/index.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/mock/role/index.js)中 mock 的数据。现在我们需要将它切换为真实后端数据，只要在[mock/role/index.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/mock/role/index.js)找到对应的路由，之后将它删除即可。这时候你可以在`network`中，查看到真实的数据。
 
 ```js
-// The declared in the api
+// api 中声明的路由
 export function getRoles() {
   return request({
     url: '/roles',
@@ -116,7 +123,7 @@ export function getRoles() {
   })
 }
 
-// Find the corresponding route and delete
+//找到对应的路由，并删除
 {
     url: '/roles',
     type: 'get',
@@ -129,74 +136,74 @@ export function getRoles() {
   },
 ```
 
-## Multiple servers
+## 多个 server
 
-Currently the project only starts a `mock-server`, of course you can also have your own other `mock-server` or proxy interface. Some api can take this service, others can take another service. Just set them to a different `baseURL`. [@/utils/request.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/utils/request.js)
+目前项目只启动了一个`mock-server`，当然你也可以有自己其它的`mock-server`或者代理接口。可以一部分接口走这个服务，另一些接口走另一个服务。只需要将它们分别设置不同的的`baseURL`即可。 [@/utils/request.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/utils/request.js)
 
-Then configure multiple `proxy` according to the set url rules in [vue.config.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/vue.config.js).
+之后根据设置的 url 规则在 [vue.config.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/vue.config.js) 中配置多个 `proxy` 。
 
 [相关文档](https://webpack.docschina.org/configuration/dev-server/#devserver-proxy)
 
-## Enable pure front end Mock
+## 启用纯前端 Mock
 
-Now in [mock/index.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/mock/index.js#L19) also encapsulates a pure front-end mock method, you only Need to be in [src/main.js](https://github.com/PanJiaChen/vue-element-admin/tree/master/src):
+现在在[mock/index.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/mock/index.js#L19)也封装了一个纯前端 mock 的方法，你只需要在[src/main.js](https://github.com/PanJiaChen/vue-element-admin/tree/master/src)中：
 
 ```js
 import { mockXHR } from '../mock'
 mockXHR()
 ```
 
-This will become pure front-end mock data and the same as the mock way before the `v4.0` version, the principle is as above. The online [demo](https://panjiachen.github.io/vue-element-admin) that you are currently seeing is just that way.
+这样就会变成纯前端 mock 数据了和`v4.0`版本之前的 mock 方案是一样的，原理见上文。目前你看到的线上[demo](https://panjiachen.github.io/vue-element-admin)就是采用该种方式。
 
-## Switch local and online Mock data
+## 本地 Mock 数据与线上数据切换
 
-There are many times when we encounter local use of mock data, online environments that use real data, or different environments that use different data.
+有很多时候我们会遇到本地使用 mock 数据，线上环境使用真实数据，或者说不同环境使用不同的数据。
 
-- **Easy-Mock**
+- **Easy-Mock 的形式**
 
-You need to ensure that your local simulated api is consistent with all other addresses except the root path. such as:
+你需要保证你本地模拟 api 除了根路径其它的地址是一致的。
+比如：
 
 ```
-https://api-dev/login   // Local request
+https://api-dev/login   // 本地请求
 
-https://api-prod/login  // Online request
+https://api-prod/login  // 线上请求
 ```
 
-We can use the [environment variables](/guide/essentials/deploy.html#environmental-variables) to do different environments and request different api base path.
+我们可以通过之后会介绍的[环境变量](/zh/guide/essentials/deploy.html#环境变量)来做到不同环境下，请求不同的 api 地址。
 
 ```bash
 # .env.development
-VUE_APP_BASE_API = '/dev-api' #Inject the root path of the local api
+VUE_APP_BASE_API = '/dev-api' #注入本地 api 的根路径
 ```
 
 ```bash
 # .env.production
-VUE_APP_BASE_API = '/prod-api' #Inject the root path of the production api
+VUE_APP_BASE_API = '/prod-api' #注入线上 api 的根路径
 ```
 
-Then create an `axios` instance based on the environment variable to have a different `baseURL`.
-[@/utils/request.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/utils/request.js)
+之后根据环境变量创建`axios`实例，让它具有不同的`baseURL`。 [@/utils/request.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/utils/request.js)
 
 ```js
 // create an axios instance
 const service = axios.create({
-  baseURL: process.env.BASE_API, // base_url of the API
+  baseURL: process.env.BASE_API, // api 的 base_url
   timeout: 5000 // request timeout
 })
 ```
 
-In this way we can automatically switched local and online apis based on environment variables.
+这样我们就做到了自动根据环境变量切换本地和线上 api。
 
-- **Mock.js**
+- **Mock.js 的切换**
 
-When we use `Mock.js` to simulate data locally, the real-world api method is used online. This is similar to the easy-mock method above. We mainly judge that when it is an online environment, we use real-world api. We only import `Mock.js` locally.
+当我们本地使用 `Mock.js` 模拟本地数据，线上使用真实环境 api 方法。这与上面的 easy-mock 的方法是差不多的。我们主要是判断：是线上环境的时候，不引入 mock 数据就可以了，只有在本地引入 `Mock.js`。
 
 ```js
 // main.js
-// use environment variables to determine is required
+// 通过环境变量来判断是否需要加载启用
 if (process.env.NODE_ENV === 'development') {
   require('./mock') // simulation data
 }
 ```
 
-Mock data is only import in the local environment.
+只有在本地环境之中才会引入 mock 数据。

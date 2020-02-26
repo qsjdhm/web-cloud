@@ -1,8 +1,8 @@
-# Lazy Loading Routes
+# 路由懒加载
 
-When you package an application, the Javascript package becomes very large, affecting the page load. If we can split the components corresponding to different routes into different code blocks and then load the corresponding components when the route is accessed, this will be more efficient.
+当打包构建应用时，Javascript 包会变得非常大，影响页面加载速度。如果我们能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样就更加高效了。
 
-Combining Vue's [async component feature](https://vuejs.org/v2/guide/components-dynamic-async.html#Async-Components) and webpack's [code splitting feature](https://webpack.js.org/guides/code-splitting/), it's trivially easy to lazy-load route components.
+结合 Vue 的[异步组件](https://cn.vuejs.org/v2/guide/components.html#异步组件)和 Webpack 的[代码分割功能](https://www.webpackjs.com/guides/code-splitting/)，轻松实现路由组件的懒加载。如：
 
 ```js
 const Foo = () => import('./Foo.vue')
@@ -10,55 +10,51 @@ const Foo = () => import('./Foo.vue')
 
 <br>
 
-**When you think your page's hot reload is slow, you need to look down ↓**
+**当你觉得你的页面热更新速度慢的时候，才需要往下看 ↓**
 
-## Differentiating development and production environments
+## 区分开发与生产环境 [该方案已淘汰]
 
-**[This solution has been eliminated]**
+当你的项目页面越来越多之后，在开发环境之中使用 `lazy-loading` 会变得不太合适，每次更改代码触发热更新都会变得非常的慢。所以建议只在生产环境之中使用路由懒加载功能。
 
-When you have more and more pages in your project, using `lazy-loading` in the development environment becomes less appropriate, and every change of code that triggers a hot update becomes very slow. Therefore, it is recommended to only use the lazy loading function in the build environment.
-
-**Development:**
+**开发环境：**
 
 ```js
-// vue-loader at least v13.0.0+
-module.exports = file => require('@/views/' + file + '.vue').default
+module.exports = file => require('@/views/' + file + '.vue').default // vue-loader at least v13.0.0+
 ```
 
-**Note here that this method only supports `vue-loader at least v13.0.0+`**[vue-element-admin/issues/231](https://github.com/PanJiaChen/vue-element-admin/issues/231)
+**这里注意一下该写法只支持 `vue-loader at least v13.0.0+`理由 [vue-element-admin/issues/231](https://github.com/PanJiaChen/vue-element-admin/issues/231)**
 
-Production：
+**生产环境：**
 
 ```js
 module.exports = file => () => import('@/views/' + file + '.vue')
 ```
 
-## Elimination reason
+## 淘汰原因
 
-Of course, there are some side effects of writing this way. due to
+当然这样写会有一些副作用。由于
 
 > Every module that could potentially be requested on an import() call is included. For example, import(./locale/${language}.json) will cause every .json file in the ./locale directory to be bundled into the new chunk. At run time, when the variable language has been computed, any file like english.json or german.json will be available for consumption.
 
+`@/views/下的 .vue` 文件都会被打包。不管你是否被依赖。所以这样就产生了一个副作用，就是会多打包一些可能永远都用不到 js 代码。当然这只会增加 dist 文件的大小，但不会对线上代码产生任何的副作用。[相关 issue](https://github.com/PanJiaChen/vue-element-admin/issues/292)
+
 ::: tip
-The user can measure whether to adopt this method according to the business situation. If your project is not large and you can also accept the local development hot update speed. You can continue to use lazy loading to avoid this side effect in all environments.
+用户自己可以根据业务情况来衡量一下是否采用本方案，如果你的项目页面不超过几十个，本地开发热更新速度你还能接受的话，可以直接所有环境下都是用懒加载避免此副作用。
 :::
 
-## New Plan
+## 新方案
 
-Use `babel plugins` [babel-plugin-dynamic-import-node](https://github.com/airbnb/babel-plugin-dynamic-import-node).
-It only does one thing by converting all `import()` to `require()`, so that all asynchronous components can be import synchronously using this plugin. Combined with the babel environment variable [BABEL_ENV](https://babeljs.io/docs/usage/babelrc/#env-option), let it only work in the development environment, in the development environment will convert all import () into require ().
+使用`babel` 的 `plugins` [babel-plugin-dynamic-import-node](https://github.com/airbnb/babel-plugin-dynamic-import-node)。它只做一件事就是将所有的`import()`转化为`require()`，这样就可以用这个插件将所有异步组件都用同步的方式引入，并结合 [BABEL_ENV](https://babeljs.io/docs/usage/babelrc/#env-option) 这个`babel`环境变量，让它只作用于开发环境下，在开发环境中将所有`import()`转化为`require()`，这种方案解决了之前重复打包的问题，同时对代码的侵入性也很小，你平时写路由的时候只需要按照官方[文档](https://router.vuejs.org/zh/guide/advanced/lazy-loading.html)路由懒加载的方式就可以了，其它的都交给`babel`来处理，当你不想用这个方案的时候，也只要将它从`babel` 的 `plugins`中移除就可以了。
 
-This solution to solve the problem of repeated packaging before, while the invasiveness of the code is also very small, you usually write routing only need to follow the lazy loading method of the [official document](https://router.vuejs.org/guide/advanced/lazy-loading.html) routing on it, the other are handed to the handle of the cable, When you don't want to use this program, just remove it from Babel's plugins.
+**具体代码：**
 
-**Code:**
-
-First add `BABEL_ENV` to `package.json`
+首先在`package.json`中增加`BABEL_ENV`
 
 ```json
 "dev": "cross-env BABEL_ENV=development webpack-dev-server --inline --progress --config build/webpack.dev.conf.js"
 ```
 
-Then `.babelrc` can only include the `babel-plugin-dynamic-import-node` `plugins` and make it work only in the `development` mode.
+接着在`.babelrc`只能加入`babel-plugin-dynamic-import-node`这个`plugins`，并让它只有在`development`模式中才生效。
 
 ```json
 {
@@ -70,20 +66,20 @@ Then `.babelrc` can only include the `babel-plugin-dynamic-import-node` `plugins
 }
 ```
 
-After that, you're done. Routing can be written as usual.
+之后就大功告成了，路由只要像平时一样写就可以了。
 
 ```js
  { path: '/login', component: () => import('@/views/login/index')}
 ```
 
-[Related code changes](https://github.com/PanJiaChen/vue-element-admin/pull/727)
+[相关代码改动](https://github.com/PanJiaChen/vue-element-admin/pull/727)
 
 ## vue-cli@3
 
-`vue-element-admin@4` has been modified to build based on `vue-cli` in the new version. So in the new version you just need to set `VUE_CLI_BABEL_TRANSPILE_MODULES:true` in the `.env.development` environment variable configuration file, specifically [code](https://github.com/PanJiaChen/vue-element-admin/blob/master/.env.development).
+`vue-element-admin@4` 在新版本中已修改为基于 `vue-cli`来进行构建。所以在新版本中你只要在`.env.development`环境变量配置文件中设置`VUE_CLI_BABEL_TRANSPILE_MODULES:true`就可以了，具体[代码](https://github.com/PanJiaChen/vue-element-admin/blob/master/.env.development)。
 
-Its implementation logic and principle are the same as before, it based on `babel-plugin-dynamic-import-node`.The only thing you need to set a variable in `vue-cli` is to borrow the default configuration of `vue-cli`. By reading [source code](https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/babel-preset-app/index.js), `vue-cli` will pass `VUE_CLI_BABEL_TRANSPILE_MODULES`,this environment variable to distinguish whether to use `babel-plugin-dynamic-import-node`, so we only need to set it to true. Although its original intention was for unit testing, it just met our needs.
+它的实现逻辑和原理与之前还是一样的，还是基于`babel-plugin-dynamic-import-node`来实现的。之所以在`vue-cli`中只需要设置一个变量就可以了，是借用了`vue-cli`它的默认配置，它帮你代码都写好了。通过阅读[源码](https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/babel-preset-app/index.js)可知，`vue-cli`会通过`VUE_CLI_BABEL_TRANSPILE_MODULES`这个环境变量来区分是否使用`babel-plugin-dynamic-import-node`，所以我们只要开启它就可以。虽然它的初衷是为了单元测试的，但正好满足了我们的需求。
 
-## Improve
+## 改进
 
-`webpack5` is about to be released, greatly improving the speed of packaging and compiling. After that, it may not need to be so complicated at all. More page hot updates can be very fast, and the solution mentioned above is completely unnecessary.
+`webpack5` 即将发布，大幅提高了打包和编译速度，之后可能完全不需要搞这么复杂了，再多的页面热更新，都能很快，完全就不需要前面提到的解决方案了。

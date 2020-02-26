@@ -4,20 +4,9 @@ function deepClone(d) {
 
 function genNav(items, type = 'EN') {
   return items.filter(v => {
-    if (v.type && v.type !== type) return false
-
-    if (v[`text${type}`]) {
-      v.text = v[`text${type}`]
-    }
-
-    if (type != 'EN' && v.link && !isExternalLink(v.link)) {
-      v.link = `/${type.toLocaleLowerCase()}${v.link}`
-    }
-
     if (v.items && v.items.length > 0) {
       v.items = genNav(v.items, type)
     }
-
     return v
   })
 }
@@ -33,9 +22,6 @@ function isExternalLink(routePath) {
 
 function getComponentSidebar(item, type = 'EN') {
   return item[0].items.map(v => {
-    if (type != 'EN' && v.link && !isExternalLink(v.link)) {
-      v.link = `/${type.toLocaleLowerCase()}${v.link}`
-    }
     return v.link
   })
 }

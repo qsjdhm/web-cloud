@@ -31,6 +31,7 @@ export default {
   components: { NavLink },
   computed: {
     isCN() {
+		console.info(this.$lang === 'zh-CN')
       return this.$lang === 'zh-CN'
     },
     data() {

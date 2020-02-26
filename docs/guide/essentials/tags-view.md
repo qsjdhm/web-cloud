@@ -1,14 +1,13 @@
-# Tags View
+# 快捷导航(标签栏导航)
 
-This feature is to respond to people's needs. In fact, I do not use this feature in company projects or personal projects. In the past, those traditional back-end frameworks often included this feature. Since most of the previous back-end projects were in the form of multiple pages, the navigation feature of the tags view still has some basic meaning. Most of them are based on the iframe.
+本功能是响应大家需求，后期加上的，其实本人在公司项目或者个人项目中是不太使用该功能的。以前那些传统后台框架往往会包含此功能，由于以前的后台项目大部分都是多页面的形式，所以标签栏导航功能还是具有一定意义的基本，大部分都是基于 iframe 的方式实现的。
 
-However, with the development of the times, the background projects are almost all spa (single page web application single page development), and it is obviously not appropriate to use the previous way to implement the navigation of the tags.
+但随着时代的发展，现在的后台项目几乎都是 spa(single page web application 单页面开发)，再使用以前的方案来实现标签导航显然是不合适的。
 
-So the current plan is:
+所以目前的方案大致为：
+运用 `keep-alive` 和 `router-view` 的结合。
 
-Use a combination of `keep-alive` and `router-view` .
-
-Code: `@/layout/components/AppMain.vue`
+代码: `@/layout/components/AppMain.vue`
 
 ```html
 <keep-alive :include="cachedViews">
@@ -16,26 +15,23 @@ Code: `@/layout/components/AppMain.vue`
 </keep-alive>
 ```
 
-The actual action of the tags view navigation is equivalent to another nav display mode. In fact, it is a router-link, and click to jump to the corresponding page. Then we are listening to changes in the route `$route` to determine if the current page needs to be reloaded or cached.
+顶部标签栏导航实际作用相当于 nav 的另一种展现形式，其实说白了都是一个个 router-link，点击跳转到相应的页面。然后我们在来监听路由 `$route` 的变化，来判断当前页面是否需要重新加载或者已被缓存。
 
 ## visitedViews && cachedViews
 
-The current tag-view maintains two arrays.
+目前 tags-view 维护了两个数组。
 
-- visitedViews : The page the user has visited is a collection of tag arrays displayed in the tags bar navigation.
-- cachedViews : The actual keep-alive route. You can set whether or not you want to cache the route by configuring the route with `meta.noCache`.
-  [Configuration Document](router-and-nav.md)
+- visitedViews : 用户访问过的页面 就是标签栏导航显示的一个个 tag 数组集合
+- cachedViews : 实际 keep-alive 的路由。可以在配置路由的时候通过 `meta.noCache` 来设置是否需要缓存这个路由 默认都缓存。[配置文档](router-and-nav.md)
 
-## Precautions
+## 注意事项
 
-Because keep-alive and router-view are strongly coupled, and it is not difficult to find the keep-alive include default is to match the component's name, it is necessary to look at the document and source code when writing the routing component corresponding to the routing router and route.
-
-Make sure the name of both is exactly the same. (Keep in mind that the naming of the name is as unique as possible. Remember not to duplicate the naming of some components, or to refer to the last memory overflow issue recursively.)
+由于目前 `keep-alive` 和 `router-view` 是强耦合的，而且查看文档和源码不难发现 `keep-alive` 的 [include](https://cn.vuejs.org/v2/api/#keep-alive) 默认是优先匹配组件的 **name** ，所以在编写路由 router 和路由对应的 view component 的时候一定要确保 两者的 name 是完全一致的。(切记 name 命名时候尽量保证唯一性 切记不要和某些组件的命名重复了，不然会递归引用最后内存溢出等问题)
 
 **DEMO:**
 
 ```js
-//Define routes
+//router 路由声明
 {
   path: 'create-form',
   component: ()=>import('@/views/form/create'),
@@ -45,30 +41,26 @@ Make sure the name of both is exactly the same. (Keep in mind that the naming of
 ```
 
 ```js
-//The corresponding view of the route. such as: form/create
+//路由对应的view  form/create
 export default {
   name: 'createForm'
 }
 ```
 
-Make sure that the two names are the same. Remember not to write duplicates or mistakes. By default, if you do not write name, it will not be cached.
+一定要保证两着的名字相同，切记写重或者写错。默认如果不写 name 就不会被缓存，详情见[issue](https://github.com/vuejs/vue/issues/6938#issuecomment-345728620)。
 
-For details, see
-[issue](https://github.com/vuejs/vue/issues/6938#issuecomment-345728620).
+## 缓存不适合场景
 
-## Cache is not suitable for the scene
+目前缓存的方案对于某些业务是不适合的，比如文章详情页这种 `/article/1` `/article/2`，他们的路由不同但对应的组件却是一样的，所以他们的组件 name 就是一样的，就如前面提到的，`keep-alive`的 include 只能根据组件名来进行缓存，所以这样就出问题了。目前有两种解决方案：
 
-Currently cached solutions are not suitable for certain services, such as the article details page such as `/article/1`、`/article/2`, their routes are different but the corresponding components are the same, so their component name is the same, As mentioned earlier, the `keep-alive` include can only be cached based on the component name, so this is a problem. There are currently two solutions:
+- 不使用 keep-alive 的 include 功能 ，直接是用 keep-alive 缓存所有组件，这样子是支持前面所说的业务情况的。
+  前往[@/layout/components/AppMain.vue](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/layout/components/AppMain.vue)文件下，移除`include`相关代码即可。当然直接使用 keep-alive 也是有弊端的，他并不能动态的删除缓存，你最多只能帮它设置一个最大缓存实例的个数 limit。[相关 issue](https://github.com/vuejs/vue/issues/6509)
 
-- Instead of using keep-alive's include, keep-alive caches all components directly. This way, it supports the aforementioned business situation.
-  To [@/layout/components/AppMain.vue](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/layout/components/AppMain.vue) remove the `include` related code. Of course, using keep-alive directly also has disadvantages. He can't dynamically delete the cache. You can only help it to set a maximum cache instance limit.
-  [issue](https://github.com/vuejs/vue/issues/6509)
+- 使用 localStorage 等浏览器缓存方案，自己进行缓存处理
 
-- Use a browser cache scheme such as localStorage, own to control the cache.
+## Affix 固钉 <Badge text="v3.10.0+"/>
 
-## Affix <Badge text="v3.10.0+"/>
-
-If the Affix attribute is added to the route, the current `tag` will be fixed in `tags-view` (cannot be deleted).
+当在声明路由是 添加了 Affix 属性，则当前`tag`会被固定在 `tags-view`中（不可被删除）。
 
 ![](https://user-images.githubusercontent.com/8121621/52840303-cd5c9280-3133-11e9-928f-e2825eaab51b.png)
 
@@ -93,21 +85,20 @@ If the Affix attribute is added to the route, the current `tag` will be fixed in
   }
 ```
 
-## Remove
+## 移除
 
-In fact, keep-alive [source code](<(https://github.com/vuejs/vue/blob/dev/src/core/components/keep-alive.js)>) is not complicated, but the logic is still quite around. Before the vue author himself fixed a bug, he was not careful, he made two versions to fix it, so if there is no user who needs the navigation bar, it is recommended Remove this feature.
+其实 keep-alive [源码](https://github.com/vuejs/vue/blob/dev/src/core/components/keep-alive.js)不复杂，但逻辑还是蛮绕的，之前尤大自己修复一个 bug 的时候也不小心搞错了，连发两个版本来修复，所以如果没有标签导航栏需求的用户，建议移除此功能。
 
-First find
-`@/layout/components/AppMain.vue` and remove `keep-alive`
+首先找到 `@/layout/components/AppMain.vue` 然后移除 `keep-alive`
 
 ```html
 <template>
   <section class="app-main" style="min-height: 100%">
     <transition name="fade-transform" mode="out-in">
-      <router-view></router-view> <!-- or <router-view :key="key"/> -->
+      <router-view></router-view>
     </transition>
   </section>
 </template>
 ```
 
-Remove the entire file `@/layout/components/TagsView.vue`. Then, remove the reference to `TagsView` in `@/layout/components/index` and in `@/layout/Layout.vue`. Finally, remove the file `@/store/modules/tagsView`.
+然后移除整个 `@/layout/components/TagsView.vue` 文件，并在`@/layout/components/index` 和 `@/layout/Layout.vue` 移除相应的依赖。最后把 `@/store/modules/tagsView` 相关的代码删除即可。

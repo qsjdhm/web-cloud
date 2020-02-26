@@ -1,20 +1,16 @@
-# Cors
+# 跨域问题
 
-The most question be asked is still about `cross-domain` issues. In fact, the `cross-domain` issue is really not a very difficult question to solve. Here I will briefly summarize several `cross-domain` solutions I recommend.
+平时被问到最多的问题还是关于跨域的，其实跨域问题真的不是一个很难解决的问题。这里我来简单总结一下我推荐的几种跨域解决方案。
 
-The most recommended way is `cors`, full name is `Cross Origin Resource Sharing`. This solution does not make any difference to the front-end write request as usual. The workload is basically on the back-end. For each request, the browser must first send a pre-request as `OPTIONS`, to know the server-side HTTP method supported for cross-source requests. After confirming that the server allows the cross-source request, then send the real request with the actual HTTP request method. Details [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+我最推荐的也是我工作中在使用的方式就是： `cors` 全称为 Cross Origin Resource Sharing（跨域资源共享）。这种方案对于前端来说没有什么工作量，和正常发送请求写法上没有任何区别，工作量基本都在后端这里。每一次请求，浏览器必须先以 `OPTIONS` 请求方式发送一个预请求（也不是所有请求都会发送 options，展开介绍 [点我](https://panjiachen.github.io/awesome-bookmarks/blog/cs.html#cors)），通过预检请求从而获知服务器端对跨源请求支持的 `HTTP` 方法。在确认服务器允许该跨源请求的情况下，再以实际的 `HTTP` 请求方法发送那个真正的请求。推荐的原因是：只要第一次配好了，之后不管有多少接口和项目复用就可以了，一劳永逸的解决了跨域问题，而且不管是开发环境还是正式环境都能方便的使用。详细 [MDN 文档](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
 
-The recommended reason is: as long as the first time is configured, no matter how many API interfaces and projects, they can be directly reused, and the cross-domain problem can be solved once and for all, and it can be conveniently used in both the development environment and the formal environment.
+但总有后端觉得麻烦不想这么搞，那纯前端也是有解决方案的。
 
-But there are always some back-end developers who think `cors` is too much `trouble`, they don't want to help the front end to solve cross-domain issues. That pure front-end is also has solutions.
+在 `dev` 开发模式下可以下使用 webpack 的 `proxy` 使用也是很方便，参照 [文档](https://www.webpackjs.com/configuration/dev-server/#devserver-proxy) 就会使用了，楼主一些个人项目使用的该方法。但这种方法在生产环境是不能使用的。在生产环境中需要使用 `nginx` 进行反向代理。不管是 `proxy` 和 `nginx` 的原理都是一样的，通过搭建一个中转服务器来转发请求规避跨域的问题。
 
-In `dev` environment, you can use webpack `proxy`, it is also very easy to use。 It's recommended that you look at the [document](https://www.webpackjs.com/configuration/dev-server/#devserver-proxy) and we're not going to discuss it here. Some of the author's personal projects use this method
+| 开发环境 | 生产环境 |
+| :------: | -------- |
+|   cors   | cors     |
+|  proxy   | nginx    |
 
-But this method can not used in the `production` environment. In `production` environment, you need to use `nginx` reverse proxy. Whether `proxy` or `nginx`, the principle is the same. Solve the cross-domain issues by building a transit server to forward requests.
-
-| development | production |
-| :---------: | ---------- |
-|    cors     | cors       |
-|    proxy    | nginx      |
-
-Here I only recommend these two ways to cross-domain, there are many other cross-domain methods but not recommended.
+这里我只推荐这两种方式跨域，其它的跨域方式都还有很多但都不推荐，真心主流的也就这两种方式。

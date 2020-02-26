@@ -1,38 +1,38 @@
----
-sidebarDepth: 3
----
+# Svg Icon 图标
 
-# Svg Icon
+全局 Svg Icon 图标组件。
 
-Global icon component: Svg Icon.
+默认在 [@/icons](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/icons/index.js#L6) 中注册到全局中，可以在项目中任意地方使用。所以图标均可在 [@/icons/svg](https://github.com/PanJiaChen/vue-element-admin/tree/master/src/icons/svg)。可自行添加或者删除图标，所以图标都会被自动导入，无需手动操作。
 
-By default, the Svg Icon component is registered in [@/icons](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/icons/index.js#L6), and can be used anywhere in the project. All icons can be found in [@/icons/svg](https://github.com/PanJiaChen/vue-element-admin/tree/master/src/icons/svg). You can add or remove the icon by yourself, and the icon will be imported automatically without manual operation.
-
-## Usage
+## 使用方式
 
 ```html
-<!-- use icon-class to setting name; use `class-name` to customizing class -->
+<!-- icon-class 为 icon 的名字; class-name 为 icon 自定义 class-->
 <svg-icon icon-class="password"  class-name='custom-class' />
 ```
 
-## Change color
+## 改变颜色
 
-By default, `svg-icon` reads its parent color `fill: currentColor;`
+`svg-icon` 默认会读取其父级的 color `fill: currentColor;`
 
-You can change the parent `color` or directly `fill` color.
+你可以改变父级的`color`或者直接改变`fill`的颜色即可。
 
-## Import from url <Badge text="v4.2.0+"/>
+:::tip
+如果你遇到图标颜色不对，可以参照本[issue](https://github.com/PanJiaChen/vue-element-admin/issues/330)进行修改
+:::
 
-Support import `svg` from external url. E.g:
+## 使用外链 <Badge text="v4.1.1+"/>
+
+支持使用外链的形式引入 `svg`。例如：
 
 `<svg-icon icon-class="https://xxxx.svg />`
 
-## Size
+## 大小
 
-If you are downloading an icon from [iconfont](https://www.iconfont.cn/), remember to use a tool such as Sketch to specify the size of the icon. Otherwise, the size of the icons in the project may not be uniform.
+如果你是从 [iconfont](https://www.iconfont.cn/)下载的图标，记得使用如 Sketch 等工具规范一下图标的大小问题，不然可能会造成项目中的图标大小尺寸不统一的问题。
 
-The icons used in this project are all 128\*128 size specifications.
+本项目中使用的图标都是 128\*128 大小规格的。
 
-:::tip
-If you encounter the wrong color of the icon, you can refer to the [issue](https://github.com/PanJiaChen/vue-element-admin/issues/330) for modification
-:::
+## 详细文章
+
+更多详细内容 可阅读该文: [手摸手，带你优雅的使用 icon](https://juejin.im/post/59bb864b5188257e7a427c09)

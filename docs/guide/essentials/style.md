@@ -1,51 +1,52 @@
-# Style
+# 样式
 
 ## CSS Modules
 
-In the code of stylIn the style development process, there are two issues are more prominent:
+在样式开发过程中，有两个问题比较突出：
 
-- Global pollution —— The selector in the CSS file is global. The same name selector in different files, according to the order in the build generation file, the styles generated later will overwrite the previous ones.
+- 全局污染 —— CSS 文件中的选择器是全局生效的，不同文件中的同名选择器，根据 build 后生成文件中的先后顺序，后面的样式会将前面的覆盖；
 
-- Selector complex —— In order to avoid the above problems, we have to be careful when writing styles, the name of the class will be marked with a range of restrictions, multi-person development is also very easy to lead to the chaos of the naming style. The classnames getting longer and longer. Eventually, it's hard to maintain.
+- 选择器复杂 —— 为了避免上面的问题，我们在编写样式的时候不得不小心翼翼，类名里会带上限制范围的标示，变得越来越长，多人开发时还很容易导致命名风格混乱，一个元素上使用的选择器个数也可能越来越多，最终导致难以维护。
 
-Fortunately vue provides us with [scoped](https://vue-loader.vuejs.org/guide/scoped-css.html#mixing-local-and-global-styles) can easily solve the above problem. As the name suggests, it adds a scoped concept to css.
+好在 vue 为我们提供了 [scoped](https://vue-loader.vuejs.org/guide/scoped-css.html#mixing-local-and-global-styles) 可以很方便的解决上述问题。
+它顾名思义给 css 加了一个域的概念。
 
 ```css
-/* Compile before */
+/* 编译前 */
 .example {
   color: red;
 }
 
-/* Compile after */
+/* 编译后 */
 .example[_v-f3f3eg9] {
   color: red;
 }
 ```
 
-If you add `<style scoped>` the css will only effect in the current component。For detailed documentation, see [vue-loader](https://vue-loader.vuejs.org/guide/scoped-css.html#mixing-local-and-global-styles)
+只要加上 `<style scoped>` 这样 css 就只会作用在当前组件内了。详细文档见 [vue-loader](https://vue-loader.vuejs.org/guide/scoped-css.html#mixing-local-and-global-styles)
 
 ::: tip
-With scoped, the parent component's styles will not leak into child components. However, a child component's root node will be affected by both the parent's scoped CSS and the child's scoped CSS. This is by design so that the parent can style the child root element for layout purposes.
+使用 scoped 后，父组件的样式将不会渗透到子组件中。不过一个子组件的根节点会同时受其父组件的 scoped CSS 和子组件的 scoped CSS 的影响。这样设计是为了让父组件可以从布局的角度出发，调整其子组件根元素的样式。
 :::
 
 <br/>
 
-## Project Structure
+## 目录结构
 
-vue-element-admin All global styles are set in the `@/src/styles` directory.
+vue-element-admin 所有全局样式都在 `@/src/styles` 目录下设置
 
 ```bash
 ├── styles
-│   ├── btn.scss                 # button css
-│   ├── element-ui.scss          # global custom element-ui style
-│   ├── index.scss               # global common style
-│   ├── mixin.scss               # global sass mixin
+│   ├── btn.scss                 # 按钮样式
+│   ├── element-ui.scss          # 全局自定义 element-ui 样式
+│   ├── index.scss               # 全局通用样式
+│   ├── mixin.scss               # 全局mixin
 │   ├── sidebar.scss             # sidebar css
-│   ├── transition.scss          # vue transition animation
-│   └── variables.scss           # global variables
+│   ├── transition.scss          # vue transition 动画
+│   └── variables.scss           # 全局变量
 ```
 
-The common workflow is that the global styles are written in the `src/styles` directory and each page's own style is written in its own `.vue` file.
+常见的工作流程是，全局样式都写在 `src/styles` 目录下，每个页面自己对应的样式都写在自己的 `.vue` 文件之中
 
 ```css
 <style>
@@ -57,27 +58,27 @@ The common workflow is that the global styles are written in the `src/styles` di
 </style>
 ```
 
-## Custom element-ui style
+<br>
 
-Now let's talk about how to override the element-ui style. Because element-ui style we are import in the global, so you can't add `scoped` to a page if you want to overwrite it, but you want to override only the element style of this page, you can add a class in its parent, using the namespace to solve this problem.
+## 自定义 element-ui 样式
+
+现在我们来说说怎么覆盖 element-ui 样式。由于 element-ui 的样式我们是在全局引入的，所以你想在某个页面里面覆盖它的样式就不能加 scoped，但你又想只覆盖这个页面的 element 样式，你就可在它的父级加一个 class，用命名空间来解决问题。
 
 ```css
 .article-page {
-  /* you namespace*/
+  /* 你的命名空间 */
   .el-tag {
-    /* element-ui element tag*/
+    /* element-ui 元素*/
     margin-right: 0px;
   }
 }
 ```
 
-**Of course, you can also use the deep selectors as described below.**
+**当然也可以使用深度作用选择器 下文会介绍**
 
-## Deep Selectors
+## 父组件改变子组件样式 深度选择器
 
-**Parent component changes child component style.**
-
-If you want a selector in scoped styles to be "deep", i.e. affecting child components, you can use the >>> combinator:
+当你子组件使用了 `scoped` 但在父组件又想修改子组件的样式可以 通过 `>>>` 来实现：
 
 ```css
 <style scoped>
@@ -85,7 +86,7 @@ If you want a selector in scoped styles to be "deep", i.e. affecting child compo
 </style>
 ```
 
-Will be compiled into
+将会编译成
 
 ```css
 .a[data-v-f3f3eg9] .b {
@@ -93,7 +94,9 @@ Will be compiled into
 }
 ```
 
-Some pre-processors, such as SASS, may not be able to parse >>> properly. In those cases you can use the /deep/ combinator instead - it's an alias for >>> and works exactly the same.
+如果你使用了一些预处理的东西，如 `sass` 你可以通过 `/deep/` 来代替 `>>>` 实现想要的效果。
+
+所以你想覆盖某个特定页面 `element` 的 button 的样式，你可以这样做：
 
 ```css
 .xxx-container >>> .el-button{
@@ -101,11 +104,28 @@ Some pre-processors, such as SASS, may not be able to parse >>> properly. In tho
 }
 ```
 
-[Official document](https://vue-loader.vuejs.org/en/features/scoped-css.html)
+[官方文档](https://vue-loader.vuejs.org/en/features/scoped-css.html)
+
+<br>
+
+## Autoprefixer [新版本已无该问题]
+
+vue-cli 有一个小坑，它默认 autoprefixer 只会对通过 vue-loader 引入的样式才会有有作用，换而言之也就是 .vue 文件里面的 css autoprefixer 才会效果。相关问题 [issues/544](https://github.com/vuejs-templates/webpack/issues/544) , [issues/600](https://github.com/vuejs-templates/webpack/issues/600) 。解决方案也很简单粗暴
+
+```html
+//app.vue
+<style lang="scss">
+  @import './styles/index.scss'; // 全局自定义的css样式
+</style>
+```
+
+你在 .vue 文件中引入你要的样式就可以了，或者你可以改变 vue-cli 的文件在 css-loader 前面在加一个 postcss-loader，在前面的 issue 地址中已经给出了解决方案。不过新版本已经默认解决处理了这个问题。
+
+<br>
 
 ## Postcss
 
-Let's talk about the configuration of postcss. After the new version of the [vue-cli webpack template](https://github.com/vuejs-templates/webpack) initialization, there is a default `postcss.config.js` in the root directory. By default, `vue-loader` will read the configuration of postcss from it, so here directly to change the configuration file on it. The configuration is the same as [postcss](https://github.com/postcss/postcss).
+这里再来说一下 postcss 的配置问题，新版的 [vue-cli webpack 模板](https://github.com/vuejs-templates/webpack) init 之后根目录下默认有一个`postcss.config.js` 。vue-loader 的 postcss 会默认读取这个文件的里的配置项，所以在这里直接改配置文件就可以了。配置和 [postcss](https://github.com/postcss/postcss)是一样的。
 
 ```javascript
 // postcss.config.js
@@ -123,19 +143,21 @@ module.exports = {
   ]
 ```
 
-As described in the previous code, autoprefixer reads the configuration parameters of browserslist under package.json.
+如上面代码所述的，autoprefixer 会去读取 package.json 下 browserslist 的配置参数
 
-- `> 1%` Compatible with browser with global usage above 1%
-- `last 2 versions` Compatible with the last two versions of each browser
-- `not ie <= 8` Not compatible ie8 and below
+- `> 1%` 兼容全球使用率大于 1%的浏览器
+- `last 2 versions` 兼容每个浏览器的最近两个版本
+- `not ie <= 8` 不兼容 ie8 及以下
 
-More detail [browserslist](https://github.com/ai/browserslist)
+具体可见 [browserslist](https://github.com/ai/browserslist)
 
-`postcss` has many other features [to explore by yourself](https://www.postcss.parts/)
+`postcss`也还有很多很多其它的功能大家可以[自行去探究](https://www.postcss.parts/)
+
+<br>
 
 ## Mixin
 
-This project does not set to automatically inject sass mixin to the global, so you need to manually introduce the mixin.
+本项目没有设置自动注入 sass 的 mixin 到全局，所以需要在使用的地方手动引入 mixin
 
 ```scss
 <style rel="stylesheet/scss" lang="scss">
@@ -143,5 +165,4 @@ This project does not set to automatically inject sass mixin to the global, so y
 </style>
 ```
 
-If you need to automatically inject mixin global, you can use
-[sass-resources-loader](https://github.com/shakacode/sass-resources-loader).
+如需要自动将 mixin 注入到全局 ，可以使用[sass-resources-loader](https://github.com/shakacode/sass-resources-loader)

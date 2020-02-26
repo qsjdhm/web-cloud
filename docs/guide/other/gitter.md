@@ -1,11 +1,3 @@
-# Gitter
+# Gitter 讨论组
 
-[Gitter](https://gitter.im/vue-element-admin/discuss)
-
-<script>
-export default {
-  mounted () {
-    window.open('https://gitter.im/vue-element-admin/discuss')
-  }
-}
-</script>
+[在线 Gitter 讨论组](https://gitter.im/vue-element-admin/discuss)
