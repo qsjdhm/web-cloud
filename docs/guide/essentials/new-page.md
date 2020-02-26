@@ -52,7 +52,7 @@
 
 ::: tip
 由于 `children` 下面只声明了一个路由所以不会有展开箭头，如果`children`下面的路由个数大于 1 就会有展开箭头，如下面所示。
-如果你想忽视这个自动判断可以使用 `alwaysShow: true`，这样它就会忽略之前定义的规则，一直显示根路由。详情见[路由和侧边栏](/zh/guide/essentials/router-and-nav.html#路由和侧边栏)
+如果你想忽视这个自动判断可以使用 `alwaysShow: true`，这样它就会忽略之前定义的规则，一直显示根路由。详情见[路由和侧边栏](/guide/essentials/router-and-nav.html#路由和侧边栏)
 :::
 
 ```js

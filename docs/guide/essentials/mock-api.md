@@ -170,7 +170,7 @@ https://api-dev/login   // 本地请求
 https://api-prod/login  // 线上请求
 ```
 
-我们可以通过之后会介绍的[环境变量](/zh/guide/essentials/deploy.html#环境变量)来做到不同环境下，请求不同的 api 地址。
+我们可以通过之后会介绍的[环境变量](/guide/essentials/deploy.html#环境变量)来做到不同环境下，请求不同的 api 地址。
 
 ```bash
 # .env.development

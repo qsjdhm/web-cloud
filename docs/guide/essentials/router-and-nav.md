@@ -70,9 +70,9 @@ meta: {
 具体的会在 [权限验证](permission.md) 页面介绍。
 
 ::: tip
-这里所有的路由页面都使用 `路由懒加载` 了 ，具体介绍见[文档](/zh/guide/advanced/lazy-loading.html)
+这里所有的路由页面都使用 `路由懒加载` 了 ，具体介绍见[文档](/guide/advanced/lazy-loading.html)
 
-如果你想了解更多关于 browserHistory 和 hashHistory，请参看 [构建和发布](/zh/guide/essentials/deploy.html)。
+如果你想了解更多关于 browserHistory 和 hashHistory，请参看 [构建和发布](/guide/essentials/deploy.html)。
 :::
 
 其它的配置和 [vue-router](https://router.vuejs.org/zh-cn/) 官方并没有区别，自行查看文档。

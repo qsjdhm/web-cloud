@@ -2,10 +2,10 @@ function deepClone(d) {
   return JSON.parse(JSON.stringify(d))
 }
 
-function genNav(items, type = 'EN') {
+function genNav(items) {
   return items.filter(v => {
     if (v.items && v.items.length > 0) {
-      v.items = genNav(v.items, type)
+      v.items = genNav(v.items)
     }
     return v
   })
@@ -20,7 +20,7 @@ function isExternalLink(routePath) {
   return validateURL(routePath)
 }
 
-function getComponentSidebar(item, type = 'EN') {
+function getComponentSidebar(item) {
   return item[0].items.map(v => {
     return v.link
   })

@@ -60,7 +60,7 @@ export default {
 
 ## 设置多个 baseURL
 
-我们可以通过[环境变量](/zh/guide/essentials/deploy.html#环境变量)设置多个`baseURL`，从而请求不同的 api 地址。
+我们可以通过[环境变量](/guide/essentials/deploy.html#环境变量)设置多个`baseURL`，从而请求不同的 api 地址。
 
 ```bash
 # .env.development

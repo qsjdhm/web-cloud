@@ -5,16 +5,12 @@
     @touchstart="onTouchStart"
     @touchend="onTouchEnd"
   >
-    <div v-if="isHome||isDonate" class="home-codefund" id="codefund"></div>
+    <!--<div v-if="isHome||isDonate" class="home-codefund" id="codefund"></div>-->
 
     <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar"/>
 
     <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
     <Sidebar :items="sidebarItems" @toggle-sidebar="toggleSidebar">
-      <div slot="top" :class="{'load-success':loadSuccess}">
-        <div v-if="!isHome" id="codefund" :key="$route.path"></div>
-      </div>
-      <slot name="sidebar-bottom" slot="bottom"/>
     </Sidebar>
 
     <div class="custom-layout" v-if="$page.frontmatter.layout">
@@ -28,7 +24,7 @@
       <slot name="page-bottom" slot="bottom"/>
     </Page>
 
-    <SWUpdatePopup :updateEvent="swUpdateEvent"/>
+    <!--<SWUpdatePopup :updateEvent="swUpdateEvent"/>-->
   </div>
 </template>
 
@@ -59,11 +55,11 @@ export default {
 
         const { path } = val
 
-        if (this.isHome || this.isDonate) {
-          getCodefund('bottom-bar')
-        } else {
-          getCodefund()
-        }
+        // if (this.isHome || this.isDonate) {
+        //   getCodefund('bottom-bar')
+        // } else {
+        //   getCodefund()
+        // }
       },
       immediate: true
     }
@@ -129,7 +125,7 @@ export default {
     }
   },
   mounted() {
-    loadGitter()
+    // loadGitter()
     window.addEventListener('scroll', this.onScroll)
     // configure progress bar
     nprogress.configure({ showSpinner: false })

@@ -207,7 +207,7 @@ Windows 用户若安装不成功，很大概率是`node-sass`安装失败，[解
 ## 捐赠
 
 如果你觉得这个项目帮助到了你，你可以帮作者买一杯果汁表示鼓励 :heart:
-[Donate](/zh/donate/)
+[Donate](/donate/)
 
 ## Browsers Support
 
