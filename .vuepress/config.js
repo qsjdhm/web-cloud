@@ -1,5 +1,5 @@
 var nav = require('./nav.js')
-var {EcosystemNav, ElementComponentNav, BusinessComponentNav} = nav
+var {GuideNav, EcosystemNav, ElementComponentNav, BusinessComponentNav} = nav
 
 var utils = require('./utils.js')
 var {genNav, getComponentSidebar, deepClone} = utils
@@ -52,31 +52,29 @@ module.exports = {
 					{
 						text: '捐赠',
 						link: '/docs/donate/'
-					},
-					{
-						text: '招聘',
-						link: '/docs/job/'
 					}
+					// ,
+					// {
+					// 	text: '招聘',
+					// 	link: '/docs/job/'
+					// }
 				],
 				sidebar: {
 					'/docs/guide/': [
 						{
 							title: '基础',
 							collapsable: false,
-							children: genEssentialsSidebar()
+							children: GuideNav.essentials
 						},
 						{
 							title: '进阶',
 							collapsable: false,
-							children: genAdvancedSidebar()
+							children: GuideNav.advanced
 						},
 						{
 							title: '其它',
 							collapsable: false,
-							children: [
-								'/docs/guide/other/gitter.md',
-								'/docs/guide/other/release-notes.md'
-							]
+							children: GuideNav.other
 						}
 					],
 
@@ -105,44 +103,4 @@ module.exports = {
 	},
 	// 文档更新时间：每个文件git最后提交的时间,
 	lastUpdated: 'Last Updated'
-}
-
-function genEssentialsSidebar(type = '') {
-	const mapArr = [
-		'/docs/guide/',
-		'/docs/guide/essentials/layout.md',
-		'/docs/guide/essentials/router-and-nav.md',
-		'/docs/guide/essentials/permission.md',
-		'/docs/guide/essentials/tags-view.md',
-		'/docs/guide/essentials/new-page.md',
-		'/docs/guide/essentials/style.md',
-		'/docs/guide/essentials/server.md',
-		'/docs/guide/essentials/mock-api.md',
-		'/docs/guide/essentials/import.md',
-		'/docs/guide/essentials/deploy.md',
-		'/docs/guide/essentials/env.md'
-	]
-	return mapArr.map(i => {
-		return type + i
-	})
-}
-
-function genAdvancedSidebar(type = '') {
-	const mapArr = [
-		'/docs/guide/advanced/cors.md',
-		'/docs/guide/advanced/eslint.md',
-		'/docs/guide/advanced/git-hook.md',
-		'/docs/guide/advanced/style-guide.md',
-		'/docs/guide/advanced/lazy-loading.md',
-		'/docs/guide/advanced/chart.md',
-		'/docs/guide/advanced/icon.md',
-		'/docs/guide/advanced/cdn.md',
-		'/docs/guide/advanced/theme.md',
-		'/docs/guide/advanced/i18n.md',
-		'/docs/guide/advanced/error.md',
-		'/docs/guide/advanced/webpack.md'
-	]
-	return mapArr.map(i => {
-		return type + i
-	})
 }

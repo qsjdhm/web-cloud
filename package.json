@@ -2,11 +2,12 @@
   "name": "root",
   "private": true,
   "workspaces": [
-    "components/*"
+    "components/*",
+    "docs/*"
   ],
   "scripts": {
-    "docs:dev": "vuepress dev .",
-    "docs:build": "vuepress build ."
+    "doc:dev": "vuepress dev .",
+    "doc:build": "vuepress build ."
   },
   "devDependencies": {
     "lerna": "^3.16.4",
