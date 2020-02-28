@@ -1,3 +1,5 @@
 .idea
 .vscode
+.vuepress/dist
 node_modules
+

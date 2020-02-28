@@ -6,7 +6,7 @@
     "docs/*"
   ],
   "scripts": {
-    "doc:dev": "vuepress dev .",
+    "doc": "vuepress dev .",
     "doc:build": "vuepress build ."
   },
   "devDependencies": {
