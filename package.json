@@ -1,20 +1,119 @@
 {
-  "name": "root",
-  "private": true,
-  "workspaces": [
-    "components/*",
-    "docs/*"
-  ],
-  "scripts": {
-    "doc": "vuepress dev .",
-    "doc:build": "vuepress build ."
-  },
-  "devDependencies": {
-    "lerna": "^3.16.4",
-    "vuepress": "^0.14.9",
-    "webpack-dev-middleware": "^3.7.2"
-  },
-  "dependencies": {
-    "axios": "^0.19.2"
-  }
+    "name": "web-cloud",
+    "private": true,
+    "version": "1.1.0",
+    "description": "A magical vue admin. An out-of-box UI solution for enterprise applications. Newest development stack of vue. Lots of awesome features",
+    "author": "Pan <panfree23@gmail.com>",
+    "license": "MIT",
+    "workspaces": [
+        "components/*",
+        "docs/*"
+    ],
+    "scripts": {
+        "dev": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "build:prod": "vue-cli-service build",
+        "build:stage": "vue-cli-service build --mode staging",
+        "preview": "node build/index.js --preview",
+        "lint": "eslint --ext .js,.vue src",
+        "test:unit": "jest --clearCache && vue-cli-service test:unit",
+        "test:ci": "npm run lint && npm run test:unit",
+        "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
+        "new": "plop",
+        "doc": "vuepress dev .",
+        "doc:build": "vuepress build ."
+    },
+    "keywords": [
+        "vue",
+        "admin",
+        "dashboard",
+        "element-ui",
+        "boilerplate",
+        "admin-template",
+        "management-system"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/PanJiaChen/vue-element-admin.git"
+    },
+    "bugs": {
+        "url": "https://github.com/PanJiaChen/vue-element-admin/issues"
+    },
+    "dependencies": {
+        "axios": "0.18.1",
+        "clipboard": "2.0.4",
+        "core-js": "^3.6.0",
+        "driver.js": "0.9.5",
+        "echarts": "4.2.1",
+        "element-ui": "^2.12.0",
+        "file-saver": "2.0.1",
+        "fuse.js": "3.4.4",
+        "html2canvas": "^1.0.0-rc.5",
+        "js-cookie": "2.2.0",
+        "jsonlint": "1.6.3",
+        "lodash": "^4.17.15",
+        "moment": "^2.24.0",
+        "normalize.css": "7.0.0",
+        "nprogress": "0.2.0",
+        "path-to-regexp": "2.4.0",
+        "qrcodejs2": "0.0.2",
+        "resize-detector": "^0.2.0",
+        "screenfull": "4.2.0",
+        "showdown": "1.9.0",
+        "sortablejs": "1.8.4",
+        "tui-editor": "1.3.3",
+        "v-viewer": "^1.4.2",
+        "vue": "^2.6.11",
+        "vue-count-to": "1.0.13",
+        "vue-directive-image-previewer": "^2.2.2",
+        "vue-draggable-resizable": "^2.0.1",
+        "vue-i18n": "^8.14.0",
+        "vue-router": "3.0.2",
+        "vuedraggable": "2.20.0",
+        "vuex": "3.1.0"
+    },
+    "devDependencies": {
+        "@babel/core": "7.0.0",
+        "@babel/register": "7.0.0",
+        "@vue/cli-plugin-babel": "^4.1.0",
+        "@vue/cli-plugin-eslint": "^4.1.0",
+        "@vue/cli-plugin-unit-jest": "3.5.3",
+        "@vue/cli-service": "^4.1.0",
+        "@vue/test-utils": "1.0.0-beta.29",
+        "autoprefixer": "^9.5.1",
+        "babel-core": "7.0.0-bridge.0",
+        "babel-eslint": "^10.0.3",
+        "babel-jest": "23.6.0",
+        "chalk": "2.4.2",
+        "chokidar": "2.1.5",
+        "connect": "3.6.6",
+        "eslint": "^5.16.0",
+        "eslint-plugin-vue": "^5.0.0",
+        "html-webpack-plugin": "3.2.0",
+        "husky": "1.3.1",
+        "lint-staged": "8.1.5",
+        "mathjs": "^6.2.5",
+        "node-sass": "^4.13.0",
+        "plop": "2.3.0",
+        "runjs": "^4.3.2",
+        "sass-loader": "^7.1.0",
+        "script-ext-html-webpack-plugin": "2.1.3",
+        "script-loader": "0.7.2",
+        "serve-static": "^1.13.2",
+        "svg-sprite-loader": "4.1.3",
+        "svgo": "1.2.0",
+        "vue-template-compiler": "^2.6.11",
+        "webpack-bundle-analyzer": "^3.6.0",
+        "lerna": "^3.16.4",
+        "vuepress": "^0.14.9",
+        "webpack-dev-middleware": "^3.7.2"
+    },
+    "engines": {
+        "node": ">=8.9",
+        "npm": ">= 3.0.0"
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions"
+    ]
 }

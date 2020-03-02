@@ -1,0 +1,64 @@
+/*衍生色 Bg 背景颜色的缩写*/
+$systemColor: #409EFF; // 系统主色
+$lineColor: #e6e6e6; // 线条颜色
+$tableHeaderBg: #f3f6fe; // 表头的背景颜色
+// base color
+$blue: #324157;
+$light-blue: #3A71A8;
+$red: #C03639;
+$pink: #E65D6E;
+$green: #30B08F;
+$tiffany: #4AB7BD;
+$yellow: #FEC171;
+$panGreen: #30B08F;
+$pageBg: #f3f6fe; // 页面背景灰
+$borderRadius: 5px; // 边框圆角
+/** 按钮色系 **/
+$btnBlueDarken: #538FFD; // 操作按钮开启蓝色
+$btnGreenDarken: #00a854; // 操作按钮开启蓝色
+$btnYellowDarken: #ffbf00; // 操作按钮关闭黄色
+$btnRed: #f56c6c; // 操作按钮 删除颜色
+
+
+/**  菜单侧边栏使用到颜色管理  **/
+$menuBgReset: #ffffff; // 整个菜单栏背景颜色
+
+// sidebar
+$menuText: #222222; // 侧边栏文字颜色
+$menuActiveText: #2C579A; // 侧边栏颜色- 激活文本页面
+$subMenuActiveText: #222222; // 侧边栏颜色-选中后父菜文字颜色  https://github.com/ElemeFE/element/issues/12951
+
+$menuBg: #ffffff;
+$menuHover: #e3eeff; // 菜单悬浮颜色
+
+$subMenuBg: transparent;
+$subMenuHover: #e3eeff; // 菜单悬浮颜色
+$subMenuHoverText: #ffffff;
+
+$sideBarItemActiveBg: #fff;
+$sideBarItemActiveText: #2C579A;
+
+$sideBarWidth: 210px;
+$sideBarBg: #192B5D; // 侧边栏sidebar 和 logo 组件的背景色
+
+$titleColor: #333333; // 标题字色
+
+// the :export directive is the magic sauce for webpack
+// https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
+:export {
+    menuText: $menuText;
+    menuActiveText: $menuActiveText;
+    subMenuActiveText: $subMenuActiveText;
+    menuBg: $menuBg;
+    menuHover: $menuHover;
+    subMenuBg: $subMenuBg;
+    subMenuHover: $subMenuHover;
+    sideBarWidth: $sideBarWidth;
+}
+
+/*文字色系,txt为text文本缩写  pt为prompt文本缩写 Bt为button文本缩写*/
+$titleColor: #333333; // 标题字色
+$txtColor: #666666; // 正文字色
+$txtAuxiliary: #999999; // 字辅助色
+
+$leftNavBg: #192B5D; //左侧导航背景颜色

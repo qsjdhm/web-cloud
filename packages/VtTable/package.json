@@ -1,0 +1,9 @@
+{
+  "name": "@vt/vt-table",
+  "version": "1.0.12",
+  "description": "",
+  "main": "index.js",
+  "author": "zhangle",
+  "license": "ISC",
+  "gitHead": "ed6c1a364066ed9fb11bb3ea6eaaeb2f26de9605"
+}

@@ -1,0 +1,353 @@
+// 常用外边距
+@for $i from 1 through 8 {
+    .ml-#{$i * 5} {
+        margin-left: $i * 5px;
+    }
+}
+
+@for $i from 1 through 8 {
+    .mt-#{$i * 5} {
+        margin-top: $i * 5px;
+    }
+}
+
+@for $i from 1 through 8 {
+    .mr-#{$i * 5} {
+        margin-right: $i * 5px;
+    }
+}
+
+@for $i from 1 through 8 {
+    .mb-#{$i * 5} {
+        margin-bottom: $i * 5px;
+    }
+}
+
+// 常用内边距
+@for $i from 1 through 8 {
+    .pl-#{$i * 5} {
+        padding-left: $i * 5px;
+    }
+}
+
+@for $i from 1 through 8 {
+    .pt-#{$i * 5} {
+        padding-top: $i * 5px;
+    }
+}
+
+@for $i from 1 through 8 {
+    .pr-#{$i * 5} {
+        padding-right: $i * 5px;
+    }
+}
+
+@for $i from 1 through 8 {
+    .pb-#{$i * 5} {
+        padding-bottom: $i * 5px;
+    }
+}
+
+// 常用字体大小样式设置
+@for $i from 1 through 20 {
+    .ft-#{$i * 2} {
+        font-size: $i * 2px;
+    }
+}
+
+//颜色标签
+.color-label {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    display: inline-block;
+    // margin-top: 4px;
+    width: 3px;
+    height: 20px;
+    background: #438afe;
+}
+.clear-float {
+    zoom: 1;
+
+    &:after {
+        content: "";
+        display: block;
+        height: 0;
+        line-height: 0px;
+        clear: both;
+        visibility: hidden;
+    }
+    .float-left {
+        float: left;
+    }
+
+    .float-right {
+        float: right;
+    }
+}
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+// 常用文字的颜色
+.red-text{
+    color: #f56c6c!important;
+}
+//表格跳转文字颜色
+.table-text {
+    color: $systemColor;
+    border-bottom: 1px solid $systemColor;
+    cursor: pointer;
+}
+ //详情页title文字样式重置
+ .detail-title {
+    min-height: 30px;
+    font-size: 14px;
+    line-height: 30px;
+    // font-weight: 600;
+    display: flex;
+
+    .span-label {
+        display: inline-block;
+        width: 30%;
+        color: #4a4a4a;
+    }
+
+    .span-value {
+        display: inline-block;
+        font-weight: bold;
+        width: 70%;
+        height: auto;
+        line-height: 30px;
+        letter-spacing: 0px;
+        color: #222222;
+    }
+}
+
+/* 重置按钮样式 */
+.bt-class{
+    border: 1px solid #66b1ff;
+    color: #3792ff;
+}
+
+// 页面标题文字部分
+.page-title-text {
+    font-size: 13px;
+    // font-weight: bold;
+    color: $titleColor;
+}
+.circle-span {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+// 页面刷新部分
+.page-refresh {
+    font-size: 16px;
+    color: $titleColor;
+}
+
+// 页面功能栏部分
+.tool-tag-text {
+  height: 32px;
+  line-height: 32px;
+  font-size: 14px;
+  color: $titleColor;
+}
+
+.vertical-middle-line {
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  height: 100%;
+}
+
+.block-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.inverse {
+  transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+}
+.clear-float {
+  zoom: 1;
+
+  &:after {
+      content: "";
+      display: block;
+      height: 0;
+      line-height: 0px;
+      clear: both;
+      visibility: hidden;
+  }
+
+  .float-left {
+      float: left;
+  }
+
+  .float-right {
+      float: right;
+  }
+}
+
+/*==================== 常用transition动画 start ====================*/
+
+/* fade */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.28s;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+
+/* fade-transform */
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all .5s;
+}
+
+.fade-transform-enter {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+/* breadcrumb transition */
+.breadcrumb-enter-active,
+.breadcrumb-leave-active {
+  transition: all .5s;
+}
+
+.breadcrumb-enter,
+.breadcrumb-leave-active {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.breadcrumb-move {
+  transition: all .5s;
+}
+
+.breadcrumb-leave-active {
+  position: absolute;
+}
+/*==================== 常用transition动画 end ====================*/
+
+/*==================== flex常用 start ====================*/
+ // 弹性盒子
+/* 定义 */
+.flex-col{
+    display: flex;
+    flex-direction: column;
+}
+.flex-1{
+    flex: 1;
+}
+.overflow{
+    overflow: auto;
+}
+.flex-def {
+    display: flex;
+}
+// 垂直布局
+.flex-v{
+    flex-direction: column;
+}
+// 水平布局
+.flex-h{
+    flex-direction: row;
+}
+/* 主轴居中 */
+.flex-zCenter {
+    justify-content: center;
+}
+
+/* 主轴end对齐 */
+.flex-zEnd {
+    justify-content: flex-end;
+}
+
+/* 主轴start对齐 */
+.flex-zStart {
+    justify-content: start;
+}
+
+/* 主轴两端对齐 */
+.flex-zBetween {
+    justify-content: space-between;
+}
+
+/* 侧轴居中 */
+.flex-cCenter {
+    align-items: center;
+}
+
+/* 侧轴start对齐 */
+.flex-cStart {
+    align-items: start;
+}
+
+/* 侧轴底部对齐 */
+.flex-cEnd {
+    align-items: flex-end;
+}
+
+/* 侧轴文本基线对齐 */
+.flex-cBaseline {
+    align-items: baseline;
+}
+
+/* 侧轴上下对齐并铺满 */
+.flex-cStretch {
+    align-items: stretch;
+}
+
+/* 主轴从上到下 */
+.flex-zTopBottom {
+    flex-direction: column;
+}
+
+/* 主轴从下到上 */
+.flex-zBottomTop {
+    flex-direction: column-reverse;
+}
+
+/* 主轴从左到右 */
+.flex-zLeftRight {
+    flex-direction: row;
+}
+
+/* 主轴从右到左 */
+.flex-zRightLeft {
+    flex-direction: row-reverse;
+}
+
+/* 是否允许子元素伸缩 */
+.flex-item {
+    flex-grow: 1;
+}
+/* 子元素的显示次序 */
+.flex-order{
+    order: 1;
+}
+/* 去除火狐input粉红色边框 */
+@-moz-document url-prefix(){
+    input[required]:invalid, input:focus:invalid, textarea[required]:invalid, textarea:focus:invalid{box-shadow: none;}
+}
+/*==================== flex常用 end ====================*/

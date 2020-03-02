@@ -1,0 +1,516 @@
+// cover some element-ui styles
+
+.el-breadcrumb__inner,
+.el-breadcrumb__inner a {
+  font-weight: 400 !important;
+}
+//输入框样式重置，边框去除 背景颜色改变
+.el-input {
+    color: #cfcfcf!important;
+    .el-input__inner {
+      border: none!important;
+      background: #F6F8FE!important;
+      color: #000000 !important;
+    }
+}
+//输入框提示文字颜色设置
+input::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+input::-moz-input-placeholder {
+  color: #c0c4cc;
+}
+input::-ms-input-placeholder {
+  color: #c0c4cc;
+}
+.el-range-editor {
+  border: none!important;
+  background: #F6F8FE!important;
+  color: #cfcfcf !important;
+  .el-range-input {
+    background: #F6F8FE!important;
+  }
+}
+//按钮样式重置
+.el-button--mini {
+  padding: 6px 10px !important;
+}
+.el-upload {
+  input[type="file"] {
+    display: none !important;
+  }
+}
+
+.el-upload__input {
+  display: none;
+}
+
+.cell {
+  .el-tag {
+    margin-right: 0px;
+  }
+}
+
+.small-padding {
+  .cell {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+.fixed-width {
+  .el-button--mini {
+    padding: 7px 10px;
+    width: 60px;
+  }
+}
+
+.status-col {
+  .cell {
+    padding: 0 10px;
+    text-align: center;
+
+    .el-tag {
+      margin-right: 0px;
+    }
+  }
+}
+
+// to fixed https://github.com/ElemeFE/element/issues/2461
+.el-dialog {
+  transform: none;
+  left: 0;
+  position: relative;
+  margin: 0 auto;
+}
+
+// refine element ui upload
+.upload-container {
+  .el-upload {
+    width: 100%;
+
+    .el-upload-dragger {
+      width: 100%;
+      height: 200px;
+    }
+  }
+}
+
+// dropdown
+.el-dropdown-menu {
+  a {
+    display: block
+  }
+}
+// fix date-picker ui bug in filter-item
+.el-range-editor.el-input__inner {
+  display: inline-flex !important;
+}
+/**
+ * 重写element-ui的样式
+ */
+
+// dialog
+.el-dialog {
+  .el-dialog__header {
+      text-align: left !important;
+      background-color: $systemColor;
+      padding-top: 10px;
+
+      .el-dialog__title {
+          font-size: 16px;
+          font-weight: bold;
+          color: #fff;
+          display: -webkit-flex;
+          display: flex;
+          justify-content: space-between;
+      }
+  }
+
+  .el-dialog__body {
+      padding: 10px 30px 10px 30px;
+  }
+
+  .el-dialog__footer {
+      border-top: 1px solid $lineColor;
+      text-align: center;
+
+      .el-button--primary {
+          background: #438AFE;
+          border-color: #0078ce;
+
+          &:hover {
+              background: $systemColor;
+              border-color: $systemColor;
+          }
+
+          &:active {
+              background: #0059a0;
+              border-color: #0059a0;
+          }
+      }
+  }
+}
+
+// 新增、编辑、查看等 form表单下拉框、输入框的样式重置
+.el-form {
+
+  .el-form-item {
+      width: 100%;
+
+      /deep/ .el-form-item__label {
+          font-weight: 500;
+          color: $txtAuxiliary !important;
+      }
+  }
+}
+
+// 时间范围选择器
+.el-date-editor .el-range-separator {
+  width: auto;
+}
+
+// 重写 el-selecttree组件样式
+.el-select-dropdown.el-popper.elTreeSelectMenu {
+  width: 300px;
+
+  .el-tree {
+      overflow: hidden;
+  }
+}
+
+.el-upload {
+  input[type="file"] {
+      display: none !important;
+  }
+}
+
+// ?菜单高度
+.el-menu-item,
+.el-submenu__title {
+  height: 48px !important;
+  line-height: 48px !important;
+  // background-color: $leftNavBg !important;
+}
+
+.el-select-dropdown {
+  //z-index: 2000!important;
+}
+
+// table
+.el-table {
+
+  // 去除表格下边框
+  // .el-button--text {
+  //     padding: 0;
+  // }
+
+  // table表格header对齐方式、加粗、字体大小修改
+  .el-table__header-wrapper {
+    height: 34px !important;
+    line-height: 34px;
+  }
+  .el-table__header-wrapper,
+    .el-table__fixed,
+    .el-table__fixed-right {
+      .el-table__header {
+          th {
+              font-weight: 500 !important;
+              color: rgba(0, 0, 0, 0.85);
+              padding: 0 !important;
+              height: 32px;
+              line-height: 32px;
+              font-size: 13px;
+              letter-spacing: 1px;
+              text-align: center;
+              background: $tableHeaderBg;
+              border-right: none;
+          }
+          .el-table--border th {
+            border-right: none;
+          }
+      }
+  }
+  .el-table--border {
+    border-bottom: 1px solid #dfe6ec !important;
+  }
+
+  // table表格body字体大小
+  .el-table__body-wrapper {
+    // border-left: 1px solid #dfe6ec !important;
+    // border-bottom: 1px solid #dfe6ec !important;
+      .el-table__body {
+
+          tbody {
+              .el-table__row {
+                height: 32px!important;
+                line-height: 32px!important;
+                overflow: hidden;
+                  .el-table--medium td {
+                    padding: 0 !important;
+                  }
+                  td {
+                    padding: 0 !important;
+
+                      //border: none;
+                      .cell {
+                          span {
+                              font-size: 13px;
+                              letter-spacing: 1px;
+                              // color: red;
+                          }
+
+                          div {
+                              span {
+                                  font-size: 13px;
+                                  letter-spacing: 1px;
+                                  // color: rgba(0,0,0,0.15);
+                              }
+                          }
+                      }
+                  }
+              }
+              .current-row td  {
+                background-color: #69A1FE !important;
+                color: #fff;
+
+                .table-text {
+                  border-bottom: 1px solid #fff;
+                }
+                span {
+                  color: #fff !important;
+                  // background: #fff !important;
+                }
+              }
+              .cell{
+                height: 32px !important;
+                line-height: 32px!important;
+              }
+          }
+      }
+  }
+}
+//表格斑马线颜色重置
+.el-table--striped .el-table__body tr.el-table__row--striped td {
+  background:rgba($color: #f3f6fe, $alpha: 0.6)
+}
+//表格悬浮背景颜色设置
+.el-table__body tr:hover>td{
+  background-color: $tableHeaderBg!important;
+}
+
+// .el-table__body tr.current-row>td{
+//   background-color: $tableHeaderBg !important;
+// }
+/* 解决表头错位问题 */
+.el-table th.gutter {
+    display: table-cell !important;
+}
+
+.el-table colgroup.gutter {
+    display: table-cell !important;
+
+}
+
+// zhangle 隐藏 table 底部表框
+.el-table::before {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+}
+.el-table--border::after {
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+}
+// tree
+.el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content {
+  background-color: #409EFF !important;
+  color: #fff;
+}
+
+ .el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content .el-button--text {
+   color: #fff !important;
+ }
+
+.el-tree {
+	// width: 100%;
+	height: 100%;
+	overflow-x: auto;
+
+	// .el-tree-node:focus>.el-tree-node__content {
+	// 	background-color: $systemColor !important;
+	// 	color: #fff;
+	// }
+  .el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content {
+    background-color: #409EFF !important;
+    color: #fff;
+  }
+	>.el-tree-node {
+		// width: 100%;
+        display: inline-block !important;
+        // display: flex;
+  }
+
+	.el-tree-node__expand-icon {
+		font-size: 18px;
+		/*color: #999;*/
+	}
+
+	.custom-tree-node {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		/*justify-content: space-between;*/
+		font-size: 14px;
+		padding-right: 8px;
+
+		.el-button--text {
+			margin-right: 0px;
+			font-size: 12px;
+
+			&:last-child {
+				margin-left: 5px;
+				margin-right: 0px;
+			}
+		}
+	}
+}
+
+// 表单label位置为top的reset
+.el-form--label-top .el-form-item__label {
+  padding-bottom: 0;
+}
+
+//teb 字体颜色重置
+.el-tabs__item.is-active {
+  color: $systemColor !important;
+  font-weight: bold;
+}
+
+.el-tabs__active-bar.is-top {
+  background-color: $systemColor !important;
+}
+
+// confirm对话框间距调整
+.el-message-box {
+  padding-bottom: 20px;
+
+  .el-message-box__content {
+      padding-top: 25px;
+  }
+
+  .el-message-box__btns {
+      padding-top: 25px;
+  }
+}
+
+// element 超出隐藏显示样式修改
+.el-tooltip__popper {
+  max-width: 500px !important;
+}
+
+/*==================== 按钮样式重置 start ====================*/
+@import './variables.scss';
+
+@mixin colorBtn($color) {
+  background: $color;
+
+  &:hover {
+    color: $color;
+
+    &:before,
+    &:after {
+      background: $color;
+    }
+  }
+}
+
+.blue-btn {
+  @include colorBtn($blue)
+}
+
+.light-blue-btn {
+  @include colorBtn($light-blue)
+}
+
+.red-btn {
+  @include colorBtn($red)
+}
+
+.pink-btn {
+  @include colorBtn($pink)
+}
+
+.green-btn {
+  @include colorBtn($green)
+}
+
+.tiffany-btn {
+  @include colorBtn($tiffany)
+}
+
+.yellow-btn {
+  @include colorBtn($yellow)
+}
+
+.pan-btn {
+  font-size: 14px;
+  color: #fff;
+  padding: 14px 36px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  transition: 600ms ease all;
+  position: relative;
+  display: inline-block;
+
+  &:hover {
+    background: #fff;
+
+    &:before,
+    &:after {
+      width: 100%;
+      transition: 600ms ease all;
+    }
+  }
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    transition: 400ms ease all;
+  }
+
+  &::after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+  }
+}
+
+.custom-button {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  background: #fff;
+  color: #fff;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  outline: 0;
+  margin: 0;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+/*==================== 按钮样式重置 end ====================*/
+

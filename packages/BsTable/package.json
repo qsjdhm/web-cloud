@@ -1,0 +1,12 @@
+{
+  "name": "@vt/bs-table",
+  "version": "1.0.12",
+  "description": "业务组件",
+  "main": "index.js",
+  "author": "zhangle",
+  "license": "ISC",
+  "dependencies": {
+    "@vt/search": "^1.0.12"
+  },
+  "gitHead": "ed6c1a364066ed9fb11bb3ea6eaaeb2f26de9605"
+}

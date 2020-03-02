@@ -1,0 +1,9 @@
+{
+  "name": "@vt/vt-search",
+  "version": "1.0.12",
+  "description": "搜索组件",
+  "main": "index.js",
+  "author": "zhangle",
+  "license": "ISC",
+  "gitHead": "ed6c1a364066ed9fb11bb3ea6eaaeb2f26de9605"
+}
