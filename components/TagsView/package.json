@@ -1,0 +1,29 @@
+{
+  "name": "@webcl/tagsview",
+  "version": "2.0.3",
+  "description": "> TODO: description",
+  "author": "DESKTOP-TR0K2SP\\admin <zhangyan1@vtstar.net>",
+  "homepage": "https://github.com/qsjdhm/web-cloud#readme",
+  "license": "ISC",
+  "main": "lib/TagsView.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qsjdhm/web-cloud.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/qsjdhm/web-cloud/issues"
+  }
+}
