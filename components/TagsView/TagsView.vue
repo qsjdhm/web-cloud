@@ -1,5 +1,5 @@
 <template>
-    <div class="asdasd">
+    <div class="asdasd2">
         TagsView111
     </div>
 </template>
