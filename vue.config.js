@@ -56,8 +56,7 @@ module.exports = {
         resolve: {
             alias: {
                 '@': resolve('src'),
-                '@vt': resolve('packages'),
-                '@webcl': resolve('components')
+                '@vt': resolve('packages')
             }
         }
     },

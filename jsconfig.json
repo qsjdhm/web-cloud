@@ -3,8 +3,7 @@
     "baseUrl": "./",
     "paths": {
         "@/*": ["src/*"],
-        "@vt/*": ["packages/*"],
-        "@webcl/*": ["components/*"]
+        "@vt/*": ["packages/*"]
     }
   },
   "exclude": ["node_modules", "dist"]

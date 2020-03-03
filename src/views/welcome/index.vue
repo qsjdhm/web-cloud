@@ -1,13 +1,16 @@
 <!-- 标准代码管理页面 -->
 <template>
     <div class="welcome-box oneScreen">
-        <div class="welcome-text">欢迎使用 <span>强信设备管理系统</span></div>
+        <TagsView></TagsView>
+        <!--<div class="welcome-text">欢迎使用 <span>强信设备管理系统</span></div>-->
     </div>
 </template>
 
 <script>
+import TagsView from '@webcl/tagsview';
 export default {
     name: 'Welcome',
+    components: { TagsView },
     data() {
         return {}
     },
@@ -19,7 +22,7 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
 .welcome-box {
     /* 84 = navbar + tags-view = 50 + 34 */
-    background-image: url(../../assets/welcome/welcome.png);
+    /*background-image: url(../../assets/welcome/welcome.png);*/
     background-size: 100% 100%;
 
     .welcome-text {
