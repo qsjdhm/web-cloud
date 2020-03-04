@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import TagsView from '../../../components/TagsView/lib/TagsView.vue';
+import { TagsView } from '@webcl/tagsview';
 export default {
     name: 'Welcome',
     components: { TagsView },
