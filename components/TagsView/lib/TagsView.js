@@ -1,8 +1,8 @@
-import TagsView from './TagsView'
+'use strict';
 
-TagsView.install = function (Vue) {
-    Vue.component(TagsView.name, TagsView)
+module.exports = webclInput;
+
+function webclInput() {
+    // TODO
 }
-
-module.exports = TagsView
 
