@@ -5,7 +5,7 @@
 ## Usage
 
 ```
-const tagsView = require('@webcl/TagsView');123
+const tagsView = require('@webcl/TagsView');1234
 
 // TODO: DEMONSTRATE API
 ```
