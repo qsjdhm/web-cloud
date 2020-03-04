@@ -5,18 +5,18 @@
 </template>
 <script>
 
-export default {
-    name: 'TagsView',
-    data() {
-        return {
+    export default {
+        name: 'TagsView',
+        data() {
+            return {
+            }
+        },
+        mounted() {
+            console.info('load TagsView')
+        },
+        methods: {
         }
-    },
-    mounted() {
-        console.info('load TagsView')
-    },
-    methods: {
     }
-}
 </script>
 <style lang="scss" scoped>
     .search-content {

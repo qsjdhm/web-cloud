@@ -1,13 +1,13 @@
 <!-- 标准代码管理页面 -->
 <template>
     <div class="welcome-box oneScreen">
-        <TagsView></TagsView>
+        <TagsView />
         <!--<div class="welcome-text">欢迎使用 <span>强信设备管理系统</span></div>-->
     </div>
 </template>
 
 <script>
-import TagsView from '@webcl/tagsview';
+import TagsView from '../../../components/TagsView/lib/TagsView.vue';
 export default {
     name: 'Welcome',
     components: { TagsView },
