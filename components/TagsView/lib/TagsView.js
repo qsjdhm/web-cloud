@@ -1,7 +1,9 @@
-'use strict';
+import TagsView from './TagsView'
 
-module.exports = tagsView;
+TagsView.install = function (Vue) {
+    Vue.component(TagsView.name, TagsView)
+}
 
-function tagsView() {
-    // TODO
+export {
+    TagsView
 }
