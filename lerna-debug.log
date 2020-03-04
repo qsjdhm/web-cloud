@@ -1,16 +1,9 @@
-15 error Error: Command failed: git remote update
-15 error ssh_exchange_identification: Connection closed by remote host
-15 error fatal: Could not read from remote repository.
-15 error
-15 error Please make sure you have the correct access rights
-15 error and the repository exists.
-15 error error: Could not fetch origin
-15 error
-15 error Fetching origin
-15 error
-15 error     at makeError (F:\modern-code\web-cloud\node_modules\@lerna\child-process\node_modules\execa\index.js:174:9)
-15 error     at Function.module.exports.sync (F:\modern-code\web-cloud\node_modules\@lerna\child-process\node_modules\execa\index.js:338:15)
-15 error     at Object.execSync (F:\modern-code\web-cloud\node_modules\@lerna\child-process\index.js:26:16)
-15 error     at updateRemote (F:\modern-code\web-cloud\node_modules\@lerna\version\lib\is-behind-upstream.js:26:16)
-15 error     at isBehindUpstream (F:\modern-code\web-cloud\node_modules\@lerna\version\lib\is-behind-upstream.js:11:3)
-15 error     at VersionCommand.initialize (F:\modern-code\web-cloud\node_modules\@lerna\version\index.js:150:9)
+46 error Error: Command failed: git push --follow-tags --no-verify --atomic origin master
+46 error ssh_exchange_identification: Connection closed by remote host
+46 error fatal: Could not read from remote repository.
+46 error
+46 error Please make sure you have the correct access rights
+46 error and the repository exists.
+46 error
+46 error     at makeError (F:\modern-code\web-cloud\node_modules\@lerna\child-process\node_modules\execa\index.js:174:9)
+46 error     at Promise.all.then.arr (F:\modern-code\web-cloud\node_modules\@lerna\child-process\node_modules\execa\index.js:278:16)

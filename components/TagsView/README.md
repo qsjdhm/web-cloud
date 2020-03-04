@@ -4,7 +4,7 @@
 
 ## Usage
 
-```1
+```12
 const tagsView = require('@webcl/TagsView');
 
 // TODO: DEMONSTRATE API
