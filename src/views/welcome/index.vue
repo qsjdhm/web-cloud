@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { TagsView } from '@webcl/tagsview';
+import TagsView from '@webcl/tagsview';
 export default {
     name: 'Welcome',
     components: { TagsView },
