@@ -2,6 +2,7 @@
     "name": "web-cloud",
     "private": true,
     "version": "1.1.0",
+    "main": "lib/vcolorpicker.umd.min.js",
     "description": "A magical vue admin. An out-of-box UI solution for enterprise applications. Newest development stack of vue. Lots of awesome features",
     "author": "Pan <panfree23@gmail.com>",
     "license": "MIT",
@@ -21,7 +22,8 @@
         "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
         "new": "plop",
         "doc": "vuepress dev .",
-        "doc:build": "vuepress build ."
+        "doc:build": "vuepress build .",
+        "lib": "vue-cli-service build --mode component --target lib --name vcolorpicker --dest lib components/index.js"
     },
     "keywords": [
         "vue",
