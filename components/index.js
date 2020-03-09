@@ -15,7 +15,11 @@ const install = function (Vue) {
   if (install.installed) return
   // 遍历注册全局组件
   components.map(component => Vue.component(component.name, component))
+    console.info(1111)
+    console.info(Vue)
+    console.info(Element)
     Vue.use(Element);
+  console.info(2222)
 }
 
 // 判断是否是直接引入文件

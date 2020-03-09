@@ -1,6 +1,6 @@
 <template lang="html">
     <div>
-        <el-button type="primary">主要按钮</el-button>
+        <el-button type="primary">主要按钮22</el-button>
         <el-input v-model="input" placeholder="请输入内容" />
         <el-rate v-model="value1"></el-rate>
     </div>
@@ -18,7 +18,7 @@ export default {
   methods: {
   },
   mounted () {
-    console.info("TagsView2")
+    console.info("TagsView222")
   }
 }
 </script>
