@@ -2,6 +2,7 @@
 import colorPicker from './color-picker'
 import tagsView2 from './TagsView2'
 import Element from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css';
 
 // 存储组件列表
 const components = [
