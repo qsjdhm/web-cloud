@@ -2,6 +2,7 @@
     <div>
         <el-button type="primary">主要按钮</el-button>
         <el-input v-model="input" placeholder="请输入内容" />
+        <el-rate v-model="value1"></el-rate>
     </div>
 </template>
 
@@ -10,6 +11,7 @@ export default {
   name: 'TagsView2',
   data () {
     return {
+        value1: null,
         input: 11
     }
   },
